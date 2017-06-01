@@ -2,7 +2,7 @@
 <head>
 <meta charset='utf-8' />
 <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>Flashcards</title>
+<title>Flashcards by jiamin</title>
 <script src="vue.min.js"></script>
 <script src="d3.min.js"></script>
 </head>
@@ -10,12 +10,12 @@
 <div id="app">
         <button class="btn btn-primary" v-on:click="Next">Next</button>
         <button class="btn btn-primary" v-on:click="Rand">Rand</button>
-        <h3 style='width:500px' v-on:click="Showme=true">DETAIL：<label v-text="Detail"></label></h3>
+        <h2 style='width:90%' v-on:click="Showme=true">DETAIL：<label v-text="Detail"></label></h2>
         <h3>ID{{ xid }}</h3>
-        <h2 style='width:500px' v-on:click="Rand" v-show="Showme">DS {{ Disease }}<br />
+        <h1 style='width:90%' v-on:click="Rand" v-show="Showme">DS {{ Disease }}<br />
         CL {{ Cat }} {{ Class }}<br />
         MT {{ Method }}<br />
-        <span style="color:rgb(255,30,30)">RX {{ Rx }}</span><br /></h2>
+        <span style="color:rgb(255,30,30)">RX {{ Rx }}</span><br /></h1>
 
     </div>
 
