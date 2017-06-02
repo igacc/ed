@@ -8,14 +8,14 @@
 </head>
 <body>
 <div id="app">
-        <button class="btn btn-primary" v-on:click="Next">Next</button>
-        <button class="btn btn-primary" v-on:click="Rand">Rand</button>
-        <h2 style='width:90%' v-on:click="Showme=true">DETAIL：<label v-text="Detail"></label></h2>
+        <h2><span v-on:click="Fresh('prev')">&lt;&lt;</span><span v-on:click="Fresh('rand')"> ? </span><span v-on:click="Fresh('next')">&gt;&gt;</span></h2>
+        <h3 style='width:90%' v-on:click="Showme=true">DETAIL：<label v-text="Detail"></label></h3>
         <h3>ID{{ xid }}</h3>
-        <h1 style='width:90%' v-on:click="Rand" v-show="Showme">DS {{ Disease }}<br />
+        <h2 style='width:90%' v-on:click="Fresh('rand')" v-show="Showme">DS {{ Disease }}<br />
         CL {{ Cat }} {{ Class }}<br />
         MT {{ Method }}<br />
-        <span style="color:rgb(255,30,30)">RX {{ Rx }}</span><br /></h1>
+        <span style="color:rgb(255,30,30)">RX {{ Rx }}</span><br /></h2>
+        <p style='color:rgb(200,200,200);text-align:center'>by jiamin</p>
 
     </div>
 
@@ -44,29 +44,27 @@
         el: '#app',
         data: data,
         methods: {
-            Next: function (event) {
+            Fresh: function (action) {
                 // `this` 在方法里指当前 Vue 实例
                 //alert('Next ' + this.Detail + '!');
+                if (action=='next')
                 this.xid++;
+                else if (action=='prev')
+                this.xid--;
+                else if (action=='rand')
+                this.xid=rang(1,ddd.length-1);
+                if (this.xid>ddd.length-1)
+                this.xid=1;
+                else if (this.xid<1)
+                this.xid=ddd.length-1
+                this.Showme=false;
                 this.Detail=ddd[this.xid].detail;
                 this.Disease=ddd[this.xid].disease;
                 this.Class=ddd[this.xid].classi;
                 this.Cat=ddd[this.xid].cat;
                 this.Method=ddd[this.xid].method;
-                this.Rx=ddd[this.xid].rx;
-                this.Showme=false;
+                this.Rx=ddd[this.xid].rx;  
             },
-            Rand: function (event2){
-                this.xid=rang(1,ddd.length);
-                this.xid++;
-                this.Detail=ddd[this.xid].detail;
-                this.Disease=ddd[this.xid].disease;
-                this.Class=ddd[this.xid].classi;
-                this.Cat=ddd[this.xid].cat;
-                this.Method=ddd[this.xid].method;
-                this.Rx=ddd[this.xid].rx;         
-                this.Showme=false;
-            }
         }
     });
     </script>
