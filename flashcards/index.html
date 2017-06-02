@@ -11,7 +11,7 @@
 <div id="app">
         <!--navbar-->
         <div style='color:rgb(200,200,200);text-align:center' v-show="username.substr(0,1)!='{'">hello {{username}}</div>
-        <div style='color:rgb(200,200,200);text-align:center' v-show="username.substr(0,1)=='{'">hello guest, to use the flashcards, please copy <input v-model='username' /> and send it to jiamin.</div>
+        <div style='color:rgb(200,200,200);text-align:center' v-show="username.substr(0,1)=='{'">hello guest, to use the flashcards, please copy <input v-model='username' /> and send it to me.</div>
         <h3 style='text-align:center'><span v-on:click="Fresh('prev')">&lt;&lt;</span><input type="text" size="5" v-model="xid" v-on:input="Fresh('curr')" /><span v-on:click="Fresh('next')">&gt;&gt;</span></h3>
         <!--detail and id-->
         <h3 style='width:90%' v-on:click="if (!Showme)Showme=true;else Fresh('rand');" v-show="username.substr(0,1)!='{'"><label v-text="Detail"></label></h3>
@@ -23,7 +23,7 @@
         <span style="color:rgb(255,30,30)">{{ Rx }}</span><br />
         </h2>
         <h3><span v-html="ldis" v-show="Showldis"></span></h3>
-        <p style='color:rgb(200,200,200);text-align:center'>by jiamin</p>
+        <p style='color:rgb(200,200,200);text-align:center'>by jm</p>
 
     </div>
     <script type="text/javascript">
