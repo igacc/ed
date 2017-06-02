@@ -5,13 +5,16 @@
 <title>Flashcards v0.62</title>
 <script src="vue.min.js"></script>
 <script src="d3.min.js"></script>
+<script src="cookie.js"></script>
 </head>
 <body>
 <div id="app">
         <!--navbar-->
+        <div style='color:rgb(200,200,200);text-align:center' v-show="username.substr(0,1)!='{'">hello {{username}}</div>
+        <div style='color:rgb(200,200,200);text-align:center' v-show="username.substr(0,1)=='{'">hello guest, to use the flashcards, please copy <input v-model='username' /> and send it to jiamin.</div>
         <h3 style='text-align:center'><span v-on:click="Fresh('prev')">&lt;&lt;</span><input type="text" size="5" v-model="xid" v-on:input="Fresh('curr')" /><span v-on:click="Fresh('next')">&gt;&gt;</span></h3>
         <!--detail and id-->
-        <h3 style='width:90%' v-on:click="if (!Showme)Showme=true;else Fresh('rand');"><label v-text="Detail"></label></h3>
+        <h3 style='width:90%' v-on:click="if (!Showme)Showme=true;else Fresh('rand');" v-show="username.substr(0,1)!='{'"><label v-text="Detail"></label></h3>
         <!--answer-->
         <h2 style='width:90%' v-show="Showme && Disease!=''">
         <span v-on:click="Listdis">{{ Disease }}<br /></span>
@@ -23,15 +26,22 @@
         <p style='color:rgb(200,200,200);text-align:center'>by jiamin</p>
 
     </div>
-
-    <script src="Content/vue/dist/vue.js"></script>
     <script type="text/javascript">
     function rang(min,max){
-    var cur=max-min+1;
-    return Math.floor(Math.random()*cur+min);
+        var cur=max-min+1;
+        return Math.floor(Math.random()*cur+min);
+    }
+    function user(){
+        if (getCookie("device")==null) setCookie("device",getGuid(),"d300");
+        var dv=getCookie("device");
+        for (var i=0;i<data.ck.length;i++)
+            if (data.ck[i].id==dv){ return data.ck[i].name;break;}
+            //return "guest";        
+            return dv;        
     }
     var ddd;
-    d3.csv("ddd", function(dd) {console.log(dd);ddd=dd});
+    d3.csv("ddd", function(dd) {ddd=dd;});
+    d3.csv("allowed.txt", function(cc) {data.ck=cc;});
     //Model
     var data = {
         Detail: '点击开始!',
@@ -44,6 +54,9 @@
         Showme: true,
         Showldis: false,
         xid: 0,
+        ck:null,
+        username:'guest',
+        
     }
 
     //ViewModel
@@ -81,8 +94,13 @@
                 }
                 this.ldis=ox;
             }
-        }
+        },
     });
+    vue.$watch('ck', function () {
+        //this.Detail=this.xxx[0].detail;
+        //执行其他代码
+        this.username=user();
+    })
     </script>
 </body>
 </html>
