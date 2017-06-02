@@ -8,13 +8,18 @@
 </head>
 <body>
 <div id="app">
-        <h1 style='text-align:center'><span v-on:click="Fresh('prev')">&lt;&lt;</span><span v-on:click="Fresh('rand')"> ? </span><span v-on:click="Fresh('next')">&gt;&gt;</span></h1>
-        <h3 style='width:90%' v-on:click="if (!Showme)Showme=true;else Fresh('rand');">DETAIL：<label v-text="Detail"></label></h3>
-        <h3>ID{{ xid }}</h3>
-        <h2 style='width:90%' v-on:click="Fresh('next')" v-show="Showme && Disease!=''">DS {{ Disease }}<br />
-        CL {{ Cat }} {{ Class }}<br />
-        MT {{ Method }}<br />
-        <span style="color:rgb(255,30,30)">RX {{ Rx }}</span><br /></h2>
+        <!--navbar-->
+        <h3 style='text-align:center'><span v-on:click="Fresh('prev')">&lt;&lt;</span><input type="text" size="1" v-model="xid" v-on:input="Fresh('curr')" /><span v-on:click="Fresh('next')">&gt;&gt;</span></h3>
+        <!--detail and id-->
+        <h3 style='width:90%' v-on:click="if (!Showme)Showme=true;else Fresh('rand');"><label v-text="Detail"></label></h3>
+        <!--answer-->
+        <h2 style='width:90%' v-show="Showme && Disease!=''">
+        <span v-on:click="Listdis">{{ Disease }}<br /></span>
+        {{ Cat }} {{ Class }}<br />
+        {{ Method }}<br />
+        <span style="color:rgb(255,30,30)">{{ Rx }}</span><br />
+        </h2>
+        <h3><span v-html="ldis" v-show="Showldis"></span></h3>
         <p style='color:rgb(200,200,200);text-align:center'>by jiamin</p>
 
     </div>
@@ -29,13 +34,15 @@
     d3.csv("ddd", function(dd) {console.log(dd);ddd=dd});
     //Model
     var data = {
-        Detail: 'Click to start!',
+        Detail: '点击开始!',
         Disease: '',
         Class: '',
         Method: '',
         Rx: '',
         Cat: '',
+        ldis:'',
         Showme: true,
+        Showldis: false,
         xid: 0,
     }
 
@@ -58,6 +65,7 @@
                 else if (this.xid<1)
                 this.xid=ddd.length-1
                 this.Showme=false;
+                this.Showldis=false;
                 this.Detail=ddd[this.xid].detail;
                 this.Disease=ddd[this.xid].disease;
                 this.Class=ddd[this.xid].classi;
@@ -65,6 +73,14 @@
                 this.Method=ddd[this.xid].method;
                 this.Rx=ddd[this.xid].rx;  
             },
+            Listdis: function(){
+                this.Showldis=true;
+                var ox='';
+                for (var i=1; i<ddd.length; i++){
+                    if (ddd[i].disease==this.Disease) ox=ox+ '<li>' + ddd[i].cat + ' ' + ddd[i].classi + '-' + ddd[i].rx + '</li>';
+                }
+                this.ldis=ox;
+            }
         }
     });
     </script>
