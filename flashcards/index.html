@@ -9,7 +9,7 @@
 <body>
 <div id="app">
         <!--navbar-->
-        <h3 style='text-align:center'><span v-on:click="Fresh('prev')">&lt;&lt;</span><input type="text" size="1" v-model="xid" v-on:input="Fresh('curr')" /><span v-on:click="Fresh('next')">&gt;&gt;</span></h3>
+        <h3 style='text-align:center'><span v-on:click="Fresh('prev')">&lt;&lt;</span><input type="text" size="5" v-model="xid" v-on:input="Fresh('curr')" /><span v-on:click="Fresh('next')">&gt;&gt;</span></h3>
         <!--detail and id-->
         <h3 style='width:90%' v-on:click="if (!Showme)Showme=true;else Fresh('rand');"><label v-text="Detail"></label></h3>
         <!--answer-->
