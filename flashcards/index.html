@@ -8,7 +8,7 @@
 </head>
 <body>
 <div id="app">
-        <h2><span v-on:click="Fresh('prev')">&lt;&lt;</span><span v-on:click="Fresh('rand')"> ? </span><span v-on:click="Fresh('next')">&gt;&gt;</span></h2>
+        <h1 style='text-align:center'><span v-on:click="Fresh('prev')">&lt;&lt;</span><span v-on:click="Fresh('rand')"> ? </span><span v-on:click="Fresh('next')">&gt;&gt;</span></h1>
         <h3 style='width:90%' v-on:click="Showme=true">DETAIL：<label v-text="Detail"></label></h3>
         <h3>ID{{ xid }}</h3>
         <h2 style='width:90%' v-on:click="Fresh('rand')" v-show="Showme">DS {{ Disease }}<br />
