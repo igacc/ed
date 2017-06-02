@@ -53,7 +53,7 @@
         ldis:'',
         Showme: true,
         Showldis: false,
-        xid: 0,
+        xid: -1,
         ck:null,
         username:'guest',
         
@@ -74,8 +74,8 @@
                 else if (action=='rand')
                 this.xid=rang(1,ddd.length-1);
                 if (this.xid>ddd.length-1)
-                this.xid=1;
-                else if (this.xid<1)
+                this.xid=0;
+                else if (this.xid<0)
                 this.xid=ddd.length-1
                 this.Showme=false;
                 this.Showldis=false;
