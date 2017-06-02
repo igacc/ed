@@ -1,1 +1,3 @@
 name,id
+my ipad,{395162d1-3b21-99ff-f8e9-64a868879117}
+my huawei,{909da0d7-b4d7-e463-635d-bd698f81bf1d}
