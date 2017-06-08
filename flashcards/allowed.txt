@@ -3,3 +3,8 @@ my ipad,{395162d1-3b21-99ff-f8e9-64a868879117}
 my huawei,{909da0d7-b4d7-e463-635d-bd698f81bf1d}
 pc firefox,{c5c60489-a50e-2a8d-0b5b-ed338050c3b8}
 xxd,{94ec95f7-d50f-da2f-f60c-1979117e23ea}
+hl_luhongqin,{-7ec0-9a6a-a827-fc4616e7859c}
+hb_c_chilinlin003,{fad7f34b-99bd-561c-9fa2-2145d5f317fb}
+hb_tsj_cc1026,{68580a53-d5fc-01ac-034c-84793d9aaa0b}
+gd_xttxtt123123,{172977df-124d-5834-2e7e-938bbe8df232}
+sh_howordwh,{d899d05a-62c9-9c96-6aba-31a0c639945e}
