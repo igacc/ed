@@ -8,3 +8,4 @@ hb_c_chilinlin003,{fad7f34b-99bd-561c-9fa2-2145d5f317fb}
 hb_tsj_cc1026,{68580a53-d5fc-01ac-034c-84793d9aaa0b}
 gd_xttxtt123123,{172977df-124d-5834-2e7e-938bbe8df232}
 sh_howordwh,{d899d05a-62c9-9c96-6aba-31a0c639945e}
+xdl-120,{037b4e9b-4e70-b52a-d292-0b38f9b6328e}
