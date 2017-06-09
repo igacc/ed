@@ -89,9 +89,11 @@
             Listdis: function(){
                 this.Showldis=true;
                 var ox='';
+                if (this.username.substr(0,1)=='@') {
                 for (var i=1; i<ddd.length; i++){
                     if (ddd[i].disease==this.Disease) ox=ox+ '<li>' + ddd[i].cat + ' ' + ddd[i].classi + '-' + ddd[i].rx + '</li>';
-                }
+                }}
+                else {ox='加微信号p1386714付费2元即可随时查看该疾病对应的其他证型和方药';}
                 this.ldis=ox;
             }
         },
