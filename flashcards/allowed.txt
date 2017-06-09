@@ -14,3 +14,5 @@ Firefly,{68580a53-d5fc-01ac-034c-84793d9aaa0b}
 豆豆,{f7abf475-af50-bbc2-5557-4b6efa884e34}
 雪莲,{48bbeb37-064d-6d9c-6548-ab6ba4915857}
 测试,https://github.com/igacc/igacc.github.io/edit/master/flashcards/allowed.txt
+测试二,好的哦
+
