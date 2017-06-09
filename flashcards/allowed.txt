@@ -1,6 +1,6 @@
 name,id
 my ipad,{395162d1-3b21-99ff-f8e9-64a868879117}
-{邀请3人或付费2元后继续使用},{909da0d7-b4d7-e463-635d-bd698f81bf1d}
+jm,{909da0d7-b4d7-e463-635d-bd698f81bf1d}
 pc firefox,{c5c60489-a50e-2a8d-0b5b-ed338050c3b8}
 xxd,{94ec95f7-d50f-da2f-f60c-1979117e23ea}
 luhongqin,{-7ec0-9a6a-a827-fc4616e7859c}
