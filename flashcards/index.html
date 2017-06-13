@@ -6,13 +6,6 @@
 <script src="vue.min.js"></script>
 <script src="d3.min.js"></script>
 <script src="cookie.js"></script>
-<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-<script>
-  (adsbygoogle = window.adsbygoogle || []).push({
-    google_ad_client: "ca-pub-0519028335142564",
-    enable_page_level_ads: true
-  });
-</script>
 </head>
 <body>
 <div id="app">
@@ -22,6 +15,17 @@
         <h3 style='text-align:center'><span v-on:click="Fresh('prev')">&lt;&lt;</span><input type="text" size="5" v-model="xid" v-on:input="Fresh('curr')" /><span v-on:click="Fresh('next')">&gt;&gt;</span></h3>
         <!--detail and id-->
         <h3 style='width:90%' v-on:click="if (!Showme)Showme=true;else Fresh('rand');" v-show="username.substr(0,1)!='{'"><label v-text="Detail"></label></h3>
+        <div style='text-align:center'>
+            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+              <!-- MOBILEAD -->
+              <ins class="adsbygoogle"
+                   style="display:inline-block;width:320px;height:100px"
+                   data-ad-client="ca-pub-0519028335142564"
+                   data-ad-slot="3587557004"></ins>
+              <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+              </script>
+         </div>
         <!--answer-->
         <h2 style='width:90%' v-show="Showme && Disease!=''">
         <span v-on:click="Listdis">{{ Disease }}<br /></span>
@@ -31,15 +35,6 @@
         </h2>
         <h3><span v-html="ldis" v-show="Showldis"></span></h3>
         <p style='color:rgb(200,200,200);text-align:center'>&copy;iga.cc
-            <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
-            <!-- MOBILEAD -->
-            <ins class="adsbygoogle"
-                 style="display:inline-block;width:320px;height:100px"
-                 data-ad-client="ca-pub-0519028335142564"
-                 data-ad-slot="3587557004"></ins>
-            <script>
-            (adsbygoogle = window.adsbygoogle || []).push({});
-            </script>
         </p>
     </div>
     <script type="text/javascript">
