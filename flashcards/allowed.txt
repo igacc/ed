@@ -32,6 +32,7 @@ pc firefox,{c5c60489-a50e-2a8d-0b5b-ed338050c3b8}
 @世界上另一个我,{ac910fe1-1ad0-3757-3bc9-6cd88bf30734}
 @周自韬,{8b2fb0b8-a5ac-daaa-5d0c-9bbd1ea8910d}
 @my.D,{4c4c659f-66eb-c76f-f38e-a542b557b4b4}
+@Miss potato,{fd42639f-4a1a-4fd5-0943-e614a08e28e7}
 *****以下是邀请了好友的用户*****,*
 王浩,{d899d05a-62c9-9c96-6aba-31a0c639945e}
 梦,{037b4e9b-4e70-b52a-d292-0b38f9b6328e}
