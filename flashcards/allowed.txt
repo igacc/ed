@@ -3,8 +3,7 @@ name,id
 @local firefox,{6b77ac40-23cb-72ab-bdc1-ec78e19e52a2}
 @local chrome,{1637b378-d698-dd38-1efc-211814f35f02}
 @my ipad,{395162d1-3b21-99ff-f8e9-64a868879117}
-@master,{909da0d7-b4d7-e463-635d-bd698f81bf1d}
-@master,{8afbf77c-14d6-551a-6065-5db2ee0dcce1}
+@@master,{909da0d7-b4d7-e463-635d-bd698f81bf1d}
 pc firefox,{c5c60489-a50e-2a8d-0b5b-ed338050c3b8}
 @xxd,{94ec95f7-d50f-da2f-f60c-1979117e23ea}
 *****以下是宝贵的付费用户*****,*
