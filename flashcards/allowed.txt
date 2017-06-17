@@ -11,7 +11,7 @@ pc firefox,{c5c60489-a50e-2a8d-0b5b-ed338050c3b8}
 @豆豆,{f7abf475-af50-bbc2-5557-4b6efa884e34}
 @薛定谔,{105e4a0d-0745-9977-1016-86feaba98049}
 @橘子,{1ce1c95d-d4be-265d-2a4f-5c9a4a594cab}
-@陈王5yuan,{b2f97dcc-af45-9949-6acd-8e3dcf1a5645}
+@@陈王,{b2f97dcc-af45-9949-6acd-8e3dcf1a5645}
 @滑板少年,{583a2ba8-0b11-41dc-f126-edc9f860eadb}
 @郭kuo,{86824aa4-5dfb-8b6b-e72f-b473263f3700}
 @谢斯毛,{d963d4e9-9b71-1e28-fd0d-c37e7124973f}
