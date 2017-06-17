@@ -14,15 +14,17 @@
         <div style='color:rgb(200,200,200);text-align:center' v-show="username.substr(0,1)=='{'">hello guest, to use the flashcards, please copy <br /><input size="100" readonly="readonly" v-model='username' /><br /> and send it to weixinid:p1386714.<br /></div>
         <h3 style='text-align:center'><span v-on:click="Fresh('prev')">&lt;&lt;</span><input type="text" size="5" v-model="xid" v-on:input="Fresh('curr')" /><span v-on:click="Fresh('next')">&gt;&gt;</span></h3>
         <!--detail and id-->
-        <h3 style='width:90%' v-on:click="if (!Showme)Showme=true;else Fresh('rand');" v-show="username.substr(0,1)!='{'"><label v-text="Detail"></label></h3>
+        <h3 style='width:90%' v-on:click="if (!Showme)Showme=true;else Fresh('rand');" v-show="username.substr(0,1)!='{'"><label v-html="Detail"></label></h3>
         <!--answer-->
         <h2 style='width:90%' v-show="Showme && Disease!=''">
-        <span v-on:click="Listdis">{{ Disease }}<br /></span>
+        <span v-on:click="Listdis" >{{Disease}}<br /></span>
         {{ Cat }} {{ Class }}<br />
         {{ Method }}<br />
         <span style="color:rgb(255,30,30)">{{ Rx }}</span><br />
         </h2>
         <h3><span v-html="ldis" v-show="Showldis"></span></h3>
+        <p>{{ upgradead }}</p>
+
         <p style='color:rgb(200,200,200);text-align:center'>  
         <br />&copy;iga.cc
         </p>
@@ -41,7 +43,6 @@
             return dv;        
     }
     var ddd;
-    d3.csv("ddd", function(dd) {ddd=dd;});
     d3.csv("allowed.txt", function(cc) {data.ck=cc;});
     //Model
     var data = {
@@ -56,6 +57,7 @@
         Showldis: false,
         xid: -1,
         ck:null,
+        upgradead:'',
         username:'{Loading service}',
         
     }
@@ -80,7 +82,8 @@
                 this.xid=ddd.length-1
                 this.Showme=false;
                 this.Showldis=false;
-                this.Detail=ddd[this.xid].detail;
+                var jb=(ddd[this.xid].diff=="")?"":"<br />与<span style='color:rgb(222,30,30)'>" + ddd[this.xid].diff + "</span>鉴别"
+                this.Detail=(this.username.substr(0,2)=='@@')?"题号[" + ddd[this.xid].id + " " + ddd[this.xid].id2 + "] " + ddd[this.xid].detail + jb :ddd[this.xid].detail + "<br />";
                 this.Disease=ddd[this.xid].disease;
                 this.Class=ddd[this.xid].classi;
                 this.Cat=ddd[this.xid].cat;
@@ -94,7 +97,7 @@
                 for (var i=1; i<ddd.length; i++){
                     if (ddd[i].disease==this.Disease) ox=ox+ '<li>' + ddd[i].cat + ' ' + ddd[i].classi + '-' + ddd[i].rx + '</li>';
                 }}
-                else {ox='加微信号p1386714付费2元即可随时查看该疾病对应的其他证型和方药';}
+                else {ox="<span style='font-weight:normal'>加微信号p1386714付费2元即可随时查看该疾病对应的其他证型和方药</span>";}
                 this.ldis=ox;
             }
         },
@@ -103,6 +106,9 @@
         //this.Detail=this.xxx[0].detail;
         //执行其他代码
         this.username=user();
+        var fnm= (this.username.substr(0,2)=='@@')?"ddd17":"ddd";
+        d3.csv(fnm, function(dd) {ddd=dd;});
+        this.upgradead=(this.username.substr(0,2)=='@@')?":)":"赞助1元可升级为最新60套真题的集萃版，复习更有针对性！加微信号p1386714";
     })
     </script>
 <div style="display:none;"><script src="https://s4.cnzz.com/z_stat.php?id=1257422626&web_id=1257422626" language="JavaScript"></script></div>
