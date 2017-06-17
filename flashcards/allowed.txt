@@ -13,7 +13,7 @@ pc firefox,{c5c60489-a50e-2a8d-0b5b-ed338050c3b8}
 @橘子,{1ce1c95d-d4be-265d-2a4f-5c9a4a594cab}
 @@陈王,{b2f97dcc-af45-9949-6acd-8e3dcf1a5645}
 @滑板少年,{583a2ba8-0b11-41dc-f126-edc9f860eadb}
-@郭kuo,{86824aa4-5dfb-8b6b-e72f-b473263f3700}
+@@郭kuo,{86824aa4-5dfb-8b6b-e72f-b473263f3700}
 @谢斯毛,{d963d4e9-9b71-1e28-fd0d-c37e7124973f}
 @华,{eca21680-d7d7-2f6e-af79-b29223abb960}
 @waiting you,{19d41873-afa0-ae5b-7793-aef30c0d52f8}
