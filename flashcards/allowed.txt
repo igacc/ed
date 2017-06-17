@@ -35,6 +35,7 @@ pc firefox,{c5c60489-a50e-2a8d-0b5b-ed338050c3b8}
 @Miss potato,{a1e95b7e-b3de-e567-b708-acd4634bdc69}
 @Nicole,{6e44e7dc-db87-ddc2-40cc-7c885b81f1cc}
 @74dm,{af3cccd5-8b5f-d7ea-44ff-b1cc14591293}
+@挖掘机找蓝翔,{c97328a0-5768-55bc-8a26-8140a1b2f210}
 *****以下是邀请了好友的用户*****,*
 王浩,{d899d05a-62c9-9c96-6aba-31a0c639945e}
 梦,{037b4e9b-4e70-b52a-d292-0b38f9b6328e}
