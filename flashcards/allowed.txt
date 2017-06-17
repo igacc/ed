@@ -5,7 +5,7 @@ name,id
 @my ipad,{395162d1-3b21-99ff-f8e9-64a868879117}
 @@master,{909da0d7-b4d7-e463-635d-bd698f81bf1d}
 pc firefox,{c5c60489-a50e-2a8d-0b5b-ed338050c3b8}
-@xxd,{94ec95f7-d50f-da2f-f60c-1979117e23ea}
+@@xxd,{a2af2b0a-50bd-832a-6901-85969446b9ab}
 *****以下是宝贵的付费用户*****,*
 @雪莲,{48bbeb37-064d-6d9c-6548-ab6ba4915857}
 @豆豆,{f7abf475-af50-bbc2-5557-4b6efa884e34}
