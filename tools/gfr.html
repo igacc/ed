@@ -1,0 +1,130 @@
+<html>
+<head>
+<meta charset='utf-8' />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>eGFR计算器</title>
+<script src="vue.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <h1>igacc egfr</h1>
+    年龄:<input size='3' v-model='age' />
+    性别:<input size='3' v-model='gender' />
+    血清肌酐:<input size='3' v-model='scr' />
+    公式:<input size='5' v-model='equa' />
+    <!--black:<input size='6' v-model='black' />
+    weight:<input size='3' v-model='weight' />-->
+    <p><span style='color:rgb(215,30,30);font-weight:bold'>{{ egfr }}</span> ml/min/1.73 m<sup>2</sup></p>
+    <p>{{ stage }}</p>
+    <p>2006年中国版MDRD公式：175*血清肌酐<sup>-1.234</sup>*年龄<sup>-0.179</sup>(如果女性*0.79)</p>
+    <p style='color:rgb(200,200,200);text-align:center'><br />&copy;iga.cc</p>
+</div>
+    <script type="text/javascript">
+     //浮点数加法运算  
+     function FloatAdd(arg1,arg2){  
+       var r1,r2,m;  
+       try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}  
+       try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}  
+       m=Math.pow(10,Math.max(r1,r2))  
+       return (arg1*m+arg2*m)/m  
+      }  
+      
+     //浮点数减法运算  
+     function FloatSub(arg1,arg2){  
+     var r1,r2,m,n;  
+     try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}  
+     try{r2=arg2.toString().split(".")[1].length}catch(e){r2=0}  
+     m=Math.pow(10,Math.max(r1,r2));  
+     //动态控制精度长度  
+     n=(r1>=r2)?r1:r2;  
+     return ((arg1*m-arg2*m)/m).toFixed(n);  
+     }  
+       
+     //浮点数乘法运算  
+     function FloatMul(arg1,arg2)   
+     {   
+      var m=0,s1=arg1.toString(),s2=arg2.toString();   
+      try{m+=s1.split(".")[1].length}catch(e){}   
+      try{m+=s2.split(".")[1].length}catch(e){}   
+      return Number(s1.replace(".",""))*Number(s2.replace(".",""))/Math.pow(10,m)   
+      }   
+      
+      
+    //浮点数除法运算  
+    function FloatDiv(arg1,arg2){   
+    var t1=0,t2=0,r1,r2;   
+    try{t1=arg1.toString().split(".")[1].length}catch(e){}   
+    try{t2=arg2.toString().split(".")[1].length}catch(e){}   
+    with(Math){   
+    r1=Number(arg1.toString().replace(".",""))   
+    r2=Number(arg2.toString().replace(".",""))   
+    return (r1/r2)*pow(10,t2-t1);   
+    }   
+    }   
+    //Model
+    var data = {
+        age:18,
+        //0 as female
+        gender:0,
+        weight:50,
+        scr:null,
+        egfr:0,
+        equa:'mdrd',
+        stage:'CKD Stage 1',
+        black:false,
+    }
+
+    //ViewModel
+    var vue = new Vue({
+        el: '#app',
+        data: data,
+        methods: {
+            calc: function () {
+                var gfr=0;
+                var cr,a,b,c,st;
+                cr=this.scr/88.4;
+                if (this.equa=="mdrd"){
+                    //umol/l: 30849*scr*-1.154*age^-0.203 if female*0.742
+                    var k=(this.gender==0)?1:0.79;
+                    gfr=FloatMul(Math.pow(cr,-1.234),Math.pow(this.age,-0.179));
+                    gfr=FloatMul(175,gfr);
+                    gfr=FloatMul(k,gfr);
+                    //gfr=k*175*Math.pow(cr,-1.154)*Math.pow(this.age,-0.203)
+                    this.egfr=gfr.toFixed(2);
+                    }
+                else if (this.equa=="epi"){
+                    //a*(scr/0.7)^b*0.993^age
+                    a=(this.black)?166:144;
+                    a=(this.gender==0)?a:a-3;
+                    b=(this.gender==0)?0.7:0.9;
+                    if (this.gender==0) {c=(this.scr<=62)?-0.329:-1.209;}
+                    else {c=(this.scr<=80)?-0.411:-1.209;}
+                    gfr=176.28*a*Math.pow((this.scr/b),c)*Math.pow(0.993,this.age);
+                    this.egfr=gfr.toFixed(2);
+                }
+                st=Math.floor(this.egfr/15);
+                st=(st>=6)?6:st;
+                var rest=['5','4','3b','3a','2','2','1'];
+                this.stage="CKD Stage " + rest[st];
+        },
+        },
+    });
+    vue.$watch('scr', function () {
+        //this.Detail=this.xxx[0].detail;
+        //执行其他代码
+        this.calc();
+    });
+    vue.$watch('age', function () {
+        //this.Detail=this.xxx[0].detail;
+        //执行其他代码
+        this.calc();
+    });
+    vue.$watch('gender', function () {
+        //this.Detail=this.xxx[0].detail;
+        //执行其他代码
+        this.calc();
+    });
+    </script>
+<div style="display:none;"><script src="https://s4.cnzz.com/z_stat.php?id=1257422626&web_id=1257422626" language="JavaScript"></script></div>
+</body>
+</html>
