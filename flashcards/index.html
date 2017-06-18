@@ -97,7 +97,7 @@
                 for (var i=1; i<ddd.length; i++){
                     if (ddd[i].disease==this.Disease) ox=ox+ '<li>' + ddd[i].cat + ' ' + ddd[i].classi + '-' + ddd[i].rx + '</li>';
                 }}
-                else {ox="<span style='font-weight:normal'>加微信号p1386714付费2元即可随时查看该疾病对应的其他证型和方药</span>";}
+                else {ox="<span style='font-weight:normal'>联系公众号igacc，随时查看该疾病对应的其他证型和方药</span>";}
                 this.ldis=ox;
             }
         },
@@ -108,7 +108,7 @@
         this.username=user();
         var fnm= (this.username.substr(0,2)=='@@')?"ddd17":"ddd";
         d3.csv(fnm, function(dd) {ddd=dd;});
-        this.upgradead=(this.username.substr(0,2)=='@@')?"":"赞助1元可升级为最新60套真题的集萃版，复习更有针对性！加微信号p1386714";
+        this.upgradead=(this.username.substr(0,2)=='@@')?"":"联系公众号igacc，可以更新为最新60套真题的集萃版，复习更有针对性！";
     })
     </script>
 <div style="display:none;"><script src="https://s4.cnzz.com/z_stat.php?id=1257422626&web_id=1257422626" language="JavaScript"></script></div>
