@@ -19,7 +19,7 @@ pc firefox,{c5c60489-a50e-2a8d-0b5b-ed338050c3b8}
 @waiting you,{19d41873-afa0-ae5b-7793-aef30c0d52f8}
 @@逸珊,{8b0037cc-2e86-45c2-7943-c460927f5ffa}
 @短发,{d9d9a065-4f86-5b95-b05c-5ae6c907497b}
-@登魁,{cd1181bc-606c-eb07-8f53-015db9bc76f2}
+@@登魁,{cd1181bc-606c-eb07-8f53-015db9bc76f2}
 @往事不堪回首,{14f14c43-10aa-e4ca-e60f-12131a9e4b93}
 @丁铃当啷,{e4567fd3-dfdb-a878-4a41-acdb08714c06}
 @小不着调的男生ヽ,{a1c6b1ba-c325-215f-0262-d38aa538e0a5}
