@@ -2,7 +2,7 @@
 <head>
 <meta charset='utf-8' />
 <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>Cards v0.619</title>
+<title>Cards v0.621</title>
 <style type="text/css">
 h2 {font-weight: normal}
 h3 {font-weight: normal}
@@ -18,23 +18,27 @@ h3 {font-weight: normal}
         <div style='color:rgb(200,200,200);text-align:center' v-show="username.substr(0,1)!='{'">hello {{username}}</div>
         <div style='color:rgb(200,200,200);text-align:center' v-show="username.substr(0,1)=='{'">hello guest, to use the flashcards, please copy <br /><input size="100" readonly="readonly" v-model='username' /><br /> and send it to weixinid:igacc.<br /></div>
         <!--navbar-->
-        <h3 style="float:right" v-show="username.substr(0,1)!='{'"><span v-if="starred" v-on:click="starred=!starred"> ヽ(｀⌒´)ノ</span>
+        <h3 style="float:right"><span v-if="starred" v-on:click="starred=!starred"> ヽ(｀⌒´)ノ</span>
         <span style="float:right;" v-on:click="starred=!starred" v-else> ( •̀ ᴗ •́ ) </span><br /></h3>        
         <h3><span v-on:click="Fresh('prev')">&lt;&lt;</span><input type="text" size="5" v-model="xid" v-on:input="Fresh('curr')" /><span v-on:click="Fresh('next')">&gt;&gt;</span>
         <!--front--></h3>
-        <h3><label v-html="frt" v-on:click="if (!showme)showme=true;else Fresh('rand');"></label></h3>
+        <h3><label  v-show="username.substr(0,1)!='{'" v-html="frt" v-on:click="if (!showme)showme=true;else Fresh('next');"></label></h3>
         <!--back-->
         <h3 v-show="showme && bac!=''">
-        <s><span v-if="skipped" v-html="bac"></span></s>
-        <span v-if="!skipped" v-html="bac"></span>
+        <s><span v-if="skipped" v-html="bac" v-on:click="Fresh('rand')"></span></s>
+        <span v-if="!skipped" v-html="bac" v-on:click="Fresh('rand')"></span>
         </h3>
         <!--setting-->               
         <h3 style="display:none">
         <span v-if="skipped" v-on:click="skipped=!skipped">skipped</span>
         <span v-on:click="skipped=!skipped" v-else>skip</span> 
         </h3>
-        <p style='color:rgb(200,200,200);text-align:center'><span v-if="staronly" style='color:rgb(200,155,155)' v-on:click="Starlist()">&copy;iga</span><span v-else v-on:click="Starlist()">&copy;iga</span><span v-on:click="showfc=!showfc">.cc</p>
-        <p style="text-align:center" v-show="showfc"><input type="text" size=10 v-model="cat" v-on:keyup.enter="Reload()"/></p>
+        <p style='color:rgb(200,200,200);text-align:center'>
+        <span v-once v-html="copy1" v-if="staronly" style='color:rgb(200,155,155)' v-on:click="Starlist()"></span>
+        <span v-once v-html="copy1" v-else v-on:click="Starlist()"></span>
+        <span v-once v-html="copy2" v-on:click="showfc=!showfc"></span>
+        </p>
+        <p style="text-align:center" v-show="showfc"><input type="text" size=10 v-model="cat" v-on:keyup.enter="window.location.hash='#' + cat;"/></p>
     </div>
     <script type="text/javascript">
     function rang(min,max){
@@ -64,13 +68,18 @@ h3 {font-weight: normal}
             //return "guest";        
             return dv;        
     }
+    window.onhashchange=function(){  
+            vue.Reload();
+        };
     var ddd;
     d3.csv("/assets/allowed.txt", function(cc) {data.ck=cc;});
     //Model
     var data = {
+        copy1: '♥collected&nbsp;',
+        copy2: '☺',
+        cat: 'oldmansea',
         frt: '点击开始!',
         bac: '',
-        cat: 'fg',
         pre: '',
         showme: true,
         showfc: false,
@@ -91,7 +100,6 @@ h3 {font-weight: normal}
         methods: {
             Fresh: function (action) {
                 // `this` 在方法里指当前 Vue 实例
-                //alert('Next ' + this.frt + '!');
                 var themax=(this.staronly)?this.stars.length-1:ddd.length-1;
                 if (action=='next')
                     this.xid++;
@@ -103,6 +111,7 @@ h3 {font-weight: normal}
                     this.xid=0;
                 else if (this.xid<0)
                     this.xid=themax;
+                //alert(this.xid);
                 var idx=(this.staronly)?this.stars[this.xid]:this.xid;
                 this.showme=false;
                 var kn=String(idx);
@@ -126,32 +135,59 @@ h3 {font-weight: normal}
             },
            Starlist: function(){
                 this.staronly=!this.staronly;
+                //跳转思路：转到收藏夹，如果有，从0开始，没有修改显示；转回全部，如果没有，恢复显示，如果有，跳到收藏夹正在看的位置
                 if (this.staronly){
-                var lst='';
-                var res=store.search(this.pre + "-star-");
-                this.stars=new Array();
-                for (var key in res){
-                    lst=lst + ddd[Number(key.split("-")[2])].frt + ' ';
-                    this.stars.push(Number(key.split("-")[2]));
+                    var res=store.search(this.pre + "-star-");
+                    this.stars=new Array();
+                    for (var key in res){
+                        this.stars.push(Number(key.split("-")[2]));
+                    }
+                    this.stars=unique(this.stars);
+                    if (this.stars.length==0){
+                        this.frt='no colletion yet!';
+                        this.bac='';
+                        }else{
+                        //jump to 0
+                        this.xid=-1;
+                        this.Fresh('next');                
+                    }
                 }
-                this.stars=unique(this.stars);
-                //console.log(this.stars);
+                else{
+                    if (this.stars.length==0){
+                    this.xid=this.xid-1;
+                    this.Fresh('next');
+                    }
+                    else{
+                    //jump to where it used to be
+                    var ik=this.stars[this.xid]
+                    this.xid=(!isNaN(ik))?ik-1:-1;
+                    this.Fresh('next');
+                    }
                 }
            },
            Reload: function(){
-                d3.csv(this.cat, function(dd) {ddd=dd;});
-                this.pre=this.cat.split(".")[0];
+                this.username=user();
                 this.showfc=false;
+                var hash=window.location.hash.substr(1);
+                if (hash==""){
+                window.location.hash="#" + this.cat;
+                hash=this.cat; 
+                }
+                this.pre=hash.split(".")[0];
+                d3.csv(hash, function(dd) {
+                    ddd=dd;
+                    //after loading table
+                    var tk=Number(store(data.pre + "-lastxid"));
+                    data.xid=(!isNaN(tk))?tk-1:-1;
+                    vue.Fresh('next');
+                    });
            },
         }
     });
     vue.$watch('ck', function () {
         //this.frt=this.xxx[0].front;
         //执行其他代码
-        
-        this.username=user();
-        d3.csv(this.cat, function(dd) {ddd=dd;});
-        this.pre=this.cat.split(".")[0];
+        this.Reload();
     });
     vue.$watch('count',function(){
         //console.log("count change");
@@ -165,9 +201,10 @@ h3 {font-weight: normal}
         //console.log("star change");
         this.Update();
     });
-    vue.$watch('staronly',function(){
+    vue.$watch('xid',function(){
         //console.log("star change");
-        this.Fresh('rand');
+        var kx=(this.staronly)?this.stars[this.xid]:this.xid;
+        if (kx!=0){store(this.pre + "-lastxid",String(kx));}
     });
      //store.clear();
     </script>
