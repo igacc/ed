@@ -1,4 +1,5 @@
-id,disease,classi,method,rx,cat,detail,diff,id2
+front,back,classi,method,rx,cat,detail,diff,id2
+题号({{front}} {{id2}}) {{detail}}<br />鉴别 <span style='color:#DF0101;'>{{diff}}</span>,{{back}}<br />{{cat}} {{classi}}<br />{{method}}<br /><span style='color:#DF0101;font-weight:bold;'>{{rx}}</span>
 1,感冒,风寒感冒,辛温解表,荆防达表汤或荆防败毒散,常人感冒,恶寒重，发热轻，无汗，头痛，肢节酸疼，鼻塞声重，或鼻痒喷嚏，时流清涕，咽痒，咳嗽，咳痰稀薄色白，口不渴或渴喜热饮，舌苔薄白而润，脉浮或浮紧,时行感冒,
 1,肠痈,湿热证,通腑泄热，解毒利湿透脓,复方大柴胡汤,,腹痛加剧，右下腹或全腹压痛、反跳痛，腹皮挛急，右下腹可摸及包块，壮热，纳呆，恶心呕吐，便秘或腹泻；舌红，苔黄腻，脉弦数或滑数,宫外孕破裂,46
 2,感冒,阴虚感冒,滋阴解表,加减葳蕤汤,虚体感冒,身热，微恶风寒，少汗，头昏，心烦，口干咽燥，干咳少痰，舌红少苔，脉细数。,,
