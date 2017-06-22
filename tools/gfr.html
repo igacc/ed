@@ -2,21 +2,25 @@
 <head>
 <meta charset='utf-8' />
 <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-<title>eGFR计算器</title>
+<title>eGFR计算器 肾小球滤过率计算器</title>
 <script src="/assets/vue.min.js"></script>
 </head>
 <body>
 <div id="app">
-    <h1>igacc egfr</h1>
-    年龄 <input size='3' v-model='age' /><br />
-    性别 <input size='3' v-model='gender' /><br />
-    肌酐 <input size='3' v-model='scr' /><br />
+    <h1><i>egfr@iga.cc</i></h1>
+    年龄 <input size='10' v-model='age' /><br />
+    性别 <input size='10' v-model='gender' /><br />
+    肌酐 <input size='10' v-model='scr' /><br />
     <!--公式:<input size='5' v-model='equa' />
     black:<input size='6' v-model='black' />
     weight:<input size='3' v-model='weight' />-->
-    <p><span style='color:rgb(215,30,30);font-weight:bold'>{{ egfr }}</span> ml/min/1.73 m<sup>2</sup></p>
+    <h1 style='font-weight:normal'><span style='color:rgb(215,30,30);font-weight:bold'>{{ egfrmdrd }}</span> (mdrd)<br /><span style='color:rgb(215,30,30);font-weight:bold'>{{ egfrepi }}</span> (epi) </h1>
     <p>{{ stage }}</p>
-    <p>2006年中国版MDRD公式：175*血清肌酐<sup>-1.234</sup>*年龄<sup>-0.179</sup>(如果女性*0.79)</p>
+    <p style='color:rgb(150,150,150)'>
+    参考资料：<br />[1]王海燕;肾脏病临床概览.北京大学医学出版社;<br />
+[2]Levey AS, Stevens LA, Schmid CH, Zhang YL, Castro AF 3rd , Feldman HI, Kusek JW, Eggers P, Van Lente F, Greene T, Coresh J; CKD-EPI (Chronic Kidney Disease Epidemiology Collaboration): A new equation to estimate glomerular filtration rate. Ann Intern Med 150: 604–612, 2009 ​​​​</p>
+    <div style="display:none"><i>MDRD：175*血清肌酐<sup>-1.234</sup>*年龄<sup>-0.179</sup>(如果女性*0.79)(2006年中国版)<br />
+    EPI：141*min(血清肌酐/a,1)<sup>b</sup>*max(血清肌酐/a,1)<sup>-1.209</sup>*0.993<sup>年龄</sup>(如果女性*1.018)(a：女性0.7，男性0.9，b：女性-0.329，男性-0.411。)<br />单位：ml/min/1.73 m<sup>2</sup></i></div>
     <p style='color:rgb(200,200,200);text-align:center'><br />&copy;iga.cc</p>
 </div>
     <script type="text/javascript">
@@ -68,9 +72,9 @@
         gender:'f',
         weight:50,
         scr:null,
-        egfr:0,
-        equa:'mdrd',
-        stage:'CKD Stage 1',
+        egfrmdrd:0,
+        egfrepi:0,
+        stage:'',
         black:false,
     }
 
@@ -81,31 +85,26 @@
         methods: {
             calc: function () {
                 var gfr=0;
-                var cr,a,b,c,st;
+                var cr,a,b,c,st,k;
                 cr=this.scr/88.4;
-                if (this.equa=="mdrd"){
-                    //umol/l: 30849*scr*-1.154*age^-0.203 if female*0.742
-                    var k=(this.gender=='f')?0.79:1;
-                    gfr=FloatMul(Math.pow(cr,-1.234),Math.pow(this.age,-0.179));
-                    gfr=FloatMul(175,gfr);
-                    gfr=FloatMul(k,gfr);
-                    //gfr=k*175*Math.pow(cr,-1.154)*Math.pow(this.age,-0.203)
-                    this.egfr=gfr.toFixed(2);
-                    }
-                else if (this.equa=="epi"){
-                    //a*(scr/0.7)^b*0.993^age
-                    a=(this.black)?166:144;
-                    a=(this.gender=='f')?a:a-3;
-                    b=(this.gender=='f')?0.7:0.9;
-                    if (this.gender=='f') {c=(this.scr<=62)?-0.329:-1.209;}
-                    else {c=(this.scr<=80)?-0.411:-1.209;}
-                    gfr=176.28*a*Math.pow((this.scr/b),c)*Math.pow(0.993,this.age);
-                    this.egfr=gfr.toFixed(2);
-                }
-                st=Math.floor(this.egfr/15);
+                //mdrd
+                k=(this.gender=='f')?0.79:1;
+                gfr=FloatMul(Math.pow(cr,-1.234),Math.pow(this.age,-0.179));
+                gfr=FloatMul(175,gfr);
+                gfr=FloatMul(k,gfr);
+                //gfr=k*175*Math.pow(cr,-1.154)*Math.pow(this.age,-0.203)
+                this.egfrmdrd=gfr.toFixed(2);
+                //epi
+                a=(this.gender=='f')?0.7:0.9;
+                b=(this.gender=='f')?-0.329:-0.411;
+                k=(this.gender=='f')?1.018:1;
+                gfr=141*Math.pow(Math.min(cr/a,1),b)*Math.pow(Math.max(cr/a,1),-1.209)*Math.pow(0.993,this.age)*k;
+                this.egfrepi=gfr.toFixed(2);
+                ///CKD STAGE
+                st=Math.floor(this.egfrmdrd/15);
                 st=(st>=6)?6:st;
                 var rest=['5','4','3b','3a','2','2','1'];
-                this.stage="CKD Stage " + rest[st];
+                this.stage="CKD " + rest[st] + "期";
         },
         },
     });
