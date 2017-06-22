@@ -2,12 +2,25 @@
 <head>
 <meta charset='utf-8' />
 <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<html>
+<head>
+<meta charset='utf-8' />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <title>eGFR计算器 肾小球滤过率计算器</title>
 <script src="/assets/vue.min.js"></script>
 </head>
 <body>
 <div id="app">
     <h1><i>egfr@iga.cc</i></h1>
+    <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- smallmobile -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:320px;height:50px"
+     data-ad-client="ca-pub-0519028335142564"
+     data-ad-slot="8656885006"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
     年龄 <input size='10' v-model='age' /><br />
     性别 <input size='10' v-model='gender' /><br />
     肌酐 <input size='10' v-model='scr' /><br />
@@ -24,7 +37,7 @@
     <p style='color:rgb(200,200,200);text-align:center'><br />&copy;iga.cc</p>
 </div>
     <script type="text/javascript">
-     //浮点数加法运算  
+         //浮点数加法运算  
      function FloatAdd(arg1,arg2){  
        var r1,r2,m;  
        try{r1=arg1.toString().split(".")[1].length}catch(e){r1=0}  
@@ -97,6 +110,59 @@
                 //epi
                 a=(this.gender=='f')?0.7:0.9;
                 b=(this.gender=='f')?-0.329:-0.411;
+                k=(this.gender=='f')?1.018:1;
+                gfr=141*Math.pow(Math.min(cr/a,1),b)*Math.pow(Math.max(cr/a,1),-1.209)*Math.pow(0.993,this.age)*k;
+                this.egfrepi=gfr.toFixed(2);
+                ///CKD STAGE
+                st=Math.floor(this.egfrmdrd/15);
+                st=(st>=6)?6:st;
+                var rest=['5','4','3b','3a','2','2','1'];
+                this.stage="CKD " + rest[st] + "期";
+        },
+        },
+    });
+    vue.$watch('scr', function () {
+        //this.Detail=this.xxx[0].detail;
+        //执行其他代码
+        this.calc();
+    });
+    vue.$watch('age', function () {
+        //this.Detail=this.xxx[0].detail;
+        //执行其他代码
+        this.calc();
+    });
+    vue.$watch('gender', function () {
+        //this.Detail=this.xxx[0].detail;
+        //执行其他代码
+        this.calc();
+    });
+</script>
+<div style="display:none;"><script src="https://s4.cnzz.com/z_stat.php?id=1257422626&web_id=1257422626" language="JavaScript"></script></div>
+</body>
+</html>
+
+        black:false,
+    }
+
+    //ViewModel
+    var vue = new Vue({
+        el: '#app',
+        data: data,
+        methods: {
+            calc: function () {
+                var gfr=0;
+                var cr,a,b,c,st,k;
+                cr=this.scr/88.4;
+                //mdrd
+                k=(this.gender=='f')?0.79:1;
+                gfr=FloatMul(Math.pow(cr,-1.234),Math.pow(this.age,-0.179));
+                gfr=FloatMul(175,gfr);
+                gfr=FloatMul(k,gfr);
+                //gfr=k*175*Math.pow(cr,-1.154)*Math.pow(this.age,-0.203)
+                this.egfrmdrd=gfr.toFixed(2);
+                //epi
+                a=(this.gender=='f')?0.7:0.9;
+                b=(this.gender=='fQ')?-0.329:-0.411;
                 k=(this.gender=='f')?1.018:1;
                 gfr=141*Math.pow(Math.min(cr/a,1),b)*Math.pow(Math.max(cr/a,1),-1.209)*Math.pow(0.993,this.age)*k;
                 this.egfrepi=gfr.toFixed(2);
