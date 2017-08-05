@@ -1,0 +1,45 @@
+<html>
+<head>
+<meta charset='utf-8' />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<script src="qimen.min.js"></script>
+<title>QIMEN</title>
+<style type="text/css">
+body{background-color:rgb(12,16,33);color:rgb(246,246,248);}
+h1 {text-align:center}
+h2 {font-weight: normal}
+h3 {font-weight: normal}
+</style>
+</head>
+<body>
+<div>
+<script>
+var dx=new Date();
+function loaddx(){
+var hash=window.location.hash.substr(1);
+if (hash=="" || hash=="now") {
+    dar=Array(String(dx.getFullYear()),String(dx.getMonth()+1),String(dx.getDate()),String(dx.getHours()),String(dx.getMinutes()),String(dx.getSeconds()));
+    for (var i=1;i<dar.length;i++){
+        if (dar[i].length<2)  dar[i]="0" + dar[i]
+    }
+    hash=dar.join("");
+    window.location.hash="#" + "now";
+}
+dx.setFullYear(hash.substr(0,4));
+dx.setMonth(hash.substr(4,2)-1);
+dx.setDate(hash.substr(6,2));
+dx.setHours(hash.substr(8,2));
+dx.setMinutes(hash.substr(10,2));
+dx.setSeconds(hash.substr(12,2));
+document.getElementsByTagName("div")[0].innerHTML=setElements(dx);
+}
+document.title=tconfig.apptitle;
+window.onhashchange=function(){
+    loaddx();
+}
+loaddx();
+</script>
+</div>
+<p style="text-align:center">&copy;2017 jiamin</p>
+</body>
+</html>
