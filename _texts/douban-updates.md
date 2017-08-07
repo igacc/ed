@@ -7,7 +7,7 @@ source: iga.cc
 
 <p class="citation"> by {{ page.author }}</p>
 
-- ![下载XKEDULAR](iga.cc/tools/Xkedular_1.3.rar)
+- ![下载XKEDULAR](http://iga.cc/tools/Xkedular_1.3.rar)
 - 用于控制过度使用
 - 仅限Windows用户.
 
