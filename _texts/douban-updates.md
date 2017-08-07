@@ -11,12 +11,12 @@ source: iga.cc
 - 用于控制过度使用
 - 仅限Windows用户.
 
-- ![下载ADT]()
+- ![下载ADT](http://iga.cc/tools/adt_rel_0.1.8.rar)
 - 用于记录开机时间
 - 仅限Windows用户.
 - 推荐更好用的替代品：搜索RESCUE TIME
 
-- ![下载10KH]()
+- 10KH（暂时不可用）
 - 用于记录日常时间消耗
 - 仅限Windows用户
 - 推荐更好用的替代品：Android用户time recording pro；iOS用户Timely
