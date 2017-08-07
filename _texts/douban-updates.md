@@ -1,5 +1,5 @@
 ---
-layout: poem
+layout: default
 title: 豆瓣贴的相关支持
 author: jiamin
 source: iga.cc
