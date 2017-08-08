@@ -234,7 +234,7 @@ var rules=[
 {title:"时干辛入墓",sizhu:"时干辛",gua:"巽"},
 {title:"时干甲入墓",sizhu:"时干甲",gua:"坤"},  
 ]
-var current={
+var qimen={
     dgan:"",
     tgan:"",
     sizhu:"",
@@ -242,7 +242,11 @@ var current={
     star:"",
     men:"",
     shen:"",
+    dx:null,
+    ju:null,
+    box:null,
     boxres:null,
+    boxhead:null,
 }
 function jieqivalue(yr,no){
     //从0开始，第一个节气是小寒
@@ -403,7 +407,7 @@ function boxIs(boxid,ruleid){
             for (var i=0;i<zs.length;i++){
                 //替换年干->对应的六三
                 for (var j=0;j<ks.length;j++){
-                    rules[ruleid][key]=rules[ruleid][key].replace(new RegExp(zs[i]+ks[j], 'g'),current.sizhu.substr(i*2+j,1));            
+                    rules[ruleid][key]=rules[ruleid][key].replace(new RegExp(zs[i]+ks[j], 'g'),qimen.sizhu.substr(i*2+j,1));            
                     
                 }
                 
@@ -412,11 +416,11 @@ function boxIs(boxid,ruleid){
         else if (key=="shen") k="shenbyB"
         else if (key=="star") {
             k="xingbyG";
-            rules[ruleid][key]=rules[ruleid][key].replace(new RegExp("符", 'g'),t.xingbyB[current.xid] );
+            rules[ruleid][key]=rules[ruleid][key].replace(new RegExp("符", 'g'),t.xingbyB[qimen.xid] );
             }
         else if (key=="men") {
             k="menbyB";
-            rules[ruleid][key]=rules[ruleid][key].replace(new RegExp("使", 'g'),t.menbyB[current.xid] );            
+            rules[ruleid][key]=rules[ruleid][key].replace(new RegExp("使", 'g'),t.menbyB[qimen.xid] );            
             }
         else if (key=="gua") k="baguabyG"
         else if(key=="title") continue 
@@ -434,18 +438,16 @@ function boxIs(boxid,ruleid){
                 for (var i=0;i<v11.length/3;i++) {
                     if (insubsub==false) continue;
                     k1=v11.substr(i*3+2,1);
-                    insubsub= (current[key].substr(zs.indexOf(v11.substr(i*3,1))*2+ks.indexOf(v11.substr(i*3+1,1)),1)==k1);
-                    if(rules[ruleid]["title"]=="时干庚入墓")console.log(k1)
-
+                    insubsub= (qimen[key].substr(zs.indexOf(v11.substr(i*3,1))*2+ks.indexOf(v11.substr(i*3+1,1)),1)==k1);
                 }
                 insub=insubsub;
             }
             else{
 
-                v2=current[key][boxid];
+                v2=qimen[key][boxid];
                 //insub= (t[k].indexOf(v11)==v2);
                 //console.log("k",k);
-                //insub= (v11==current[key][v2]);
+                //insub= (v11==qimen[key][v2]);
                 insub= (t[k].indexOf(v11)==v2);
                 if (rules[ruleid]["men"]=="生/死"){
                 }
@@ -463,21 +465,23 @@ function tellbox(boxid){
     var ox,rid;
     if (boxid!=4){
         ox="<h2>"+t.baguabyG[boxid]+t.no[boxid+1]+"宫</h2>";
-        for (var i=0;i<current.boxres[boxid].length;i++){
-            rid=current.boxres[boxid][i];
+        for (var i=0;i<qimen.boxres[boxid].length;i++){
+            rid=qimen.boxres[boxid][i];
             ox=ox+"<li>"+rules[rid].title+"</li>";
             for (var k in rules[rid]){
                 if (k!="detail" && k!="title") ox=ox+rules[rid][k]+"+";
             }
             ox=ox.substr(0,ox.length-1);
         }
-    return ox;
     }
-    return "";
+    else {
+        ox="";
+    }
+    return ox;
 }
 
 //计算九宫内的元素
-function setElements(dx){
+function initQimen(dx){
     var ju=yinyangju(dx);
     var dgan=(ju>0)?"012345678":"087654321";
     var seq=(ju>0)?"01234567":"07654321";
@@ -564,32 +568,35 @@ function setElements(dx){
     men=menx.join("");
     shen=shenx.join("");
     //格局分析
-    current.dgan=dgan;
-    current.tgan=tgan;
-    current.star=star;
-    current.gua="012345678";
-    current.men=men;
-    current.shen=shen;
-    current.sizhu=nianzhu(dx)+yuezhu(dx)+rizhu(dx)+shizhu(dx);
-    current.xid=xid;
+    qimen.dgan=dgan;
+    qimen.tgan=tgan;
+    qimen.star=star;
+    qimen.gua="012345678";
+    qimen.men=men;
+    qimen.shen=shen;
+    qimen.sizhu=nianzhu(dx)+yuezhu(dx)+rizhu(dx)+shizhu(dx);
+    qimen.xid=xid;
+    qimen.dx=dx;
+    qimen.ju=ju;
     var boxres=[[],[],[],[],[],[],[],[],[]];
     //for (var i=0;i<1;i++){
     for (var i=0;i<9;i++){
         for (var j=0;j<rules.length;j++){
             if (boxIs(i,j)) {
-                console.log(t.baguabyG[i]+"宫 - "+rules[j].title);
+                //console.log(t.baguabyG[i]+"宫 - "+rules[j].title);
                 boxres[i].push(j);
             }
         }
     }
-    current.boxres=boxres;
+    qimen.boxres=boxres;
     //打印布局
     //osx="<h1><a style='text-decoration:none;' href='#now'>"+tconfig.apptitle+"</a></h1>";
     osx="<h1>"+tconfig.apptitle+"</h1>";
-    osx=osx+"<br />" + "时间&nbsp;&nbsp;"+dx.toLocaleString();
-    osx=osx+"<br />" + "节气&nbsp;&nbsp;"+"阴阳"[(Math.abs(ju)+ju)/ju/2]+"遁&nbsp;&nbsp;" + t.no[Math.abs(ju)]+"局&nbsp;&nbsp;"+jieqi(dx).name+"&nbsp;&nbsp;"+"上中下"[sanyuan(dx,tconfig.yuanstyle)]+"元("+jieqi(dx).past+"天) ";
-    osx=osx+"<br />" +"四柱&nbsp;&nbsp;"+nianzhu(dx)+"&nbsp;&nbsp;"+yuezhu(dx)+"&nbsp;&nbsp;"+rizhu(dx)+"&nbsp;&nbsp;"+shizhu(dx);
-    osx=osx+"<br /><br />"
+    osx=osx+"<br />" + "时间&nbsp;&nbsp;"+qimen.dx.toLocaleString();
+    osx=osx+"<br />" + "节气&nbsp;&nbsp;"+"阴阳"[(Math.abs(qimen.ju)+qimen.ju)/qimen.ju/2]+"遁&nbsp;&nbsp;" + t.no[Math.abs(qimen.ju)]+"局&nbsp;&nbsp;"+jieqi(qimen.dx).name+"&nbsp;&nbsp;"+"上中下"[sanyuan(qimen.dx,tconfig.yuanstyle)]+"元("+jieqi(qimen.dx).past+"天) ";
+    osx=osx+"<br />" +"四柱&nbsp;&nbsp;"+qimen.sizhu.substr(0,2)+"&nbsp;&nbsp;"+qimen.sizhu.substr(2,2)+"&nbsp;&nbsp;"+qimen.sizhu.substr(4,2)+"&nbsp;&nbsp;"+qimen.sizhu.substr(6,2)+"&nbsp;&nbsp;";
+    qimen.boxhead=osx;
+    //osx=osx+"<br /><br />"
     var boxes="........".split(".");
     for (var i=0;i<3;i++){
         for (var j=0;j<3;j++){
@@ -620,17 +627,7 @@ function setElements(dx){
             }
         }
     }
-    //写入方格
-    osx=osx+"<table border=0 width=80% cellpadding=15% style='empty-cells:show;border-collapse:collapse;'>";
-    for (var i=0;i<3;i++){
-        osx=osx+"<tr>";
-        for (var j=0;j<3;j++){
-            osx=osx+"<td onclick='document.getElementsByTagName(\"div\")[1].innerHTML=tellbox("+t.ordreal[(j+i*3)]+");' style='text-align:center;'>"+boxes[j+i*3]+"</td>";
-        }
-        osx=osx+"</tr>";
-    }
-    osx=osx+"</table>";
-    //写入解析
+    qimen.box=boxes;
 
     /*
     dbg=dbg+"地盘干 -> "+dgan;
@@ -655,7 +652,3 @@ function setElements(dx){
     osx=osx + dbg;
     return osx;
 }
-function drawlayer(){
-    var osx="";
-    osx="";
-} 
