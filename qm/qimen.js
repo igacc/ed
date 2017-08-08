@@ -396,6 +396,22 @@ function yinyangju(dx){
     return (c);
 }
 
+function swsRel(sg,sz){
+    var a,b,tk,sz2,ox;
+    ox="";
+    for (var i=0;i<sz.length;i++){
+        sz2=sz[i];
+        a=t.zhi.indexOf(sz2);
+        b=t.zhi.indexOf(t.zhibyS[t.gan.indexOf(sg)]);
+        tk=a-b;
+        if(t.gan.indexOf(sg)%2!=0) tk=-tk;
+        if(tk<0) tk=tk+12;//
+        ox=ox+t.sws[tk]+"/";
+    }
+    return ox.substr(0,ox.length-1);
+}
+
+
 //判断是否匹配某个格局
 function boxIs(boxid,ruleid){
     var k,vk,v1,v11,v2,k1,k2;
@@ -462,16 +478,18 @@ function boxIs(boxid,ruleid){
 }
 
 function tellbox(boxid){
-    var ox,rid;
+    var ox,rid,swstate;
     if (boxid!=4){
-        ox="<h2>"+t.baguabyG[boxid]+t.no[boxid+1]+"宫</h2>";
+        swstate=t.liusan[qimen.tgan[boxid]]+" "+swsRel(t.liusan[qimen.tgan[boxid]],t.zhibyG[boxid])+"<br />";
+        swstate=swstate+t.liusan[qimen.dgan[boxid]]+" "+swsRel(t.liusan[qimen.dgan[boxid]],t.zhibyG[boxid])+"<br />";
+        ox="<h2>"+t.baguabyG[boxid]+t.no[boxid+1]+"宫</h2>"+swstate;
         for (var i=0;i<qimen.boxres[boxid].length;i++){
             rid=qimen.boxres[boxid][i];
-            ox=ox+"<li>"+rules[rid].title+"</li>";
+            ox=ox+"<li>"+rules[rid].title+"</li>(";
             for (var k in rules[rid]){
                 if (k!="detail" && k!="title") ox=ox+rules[rid][k]+"+";
             }
-            ox=ox.substr(0,ox.length-1);
+            ox=ox.substr(0,ox.length-1)+")";
         }
     }
     else {
