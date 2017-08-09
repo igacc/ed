@@ -702,7 +702,7 @@ function initQimen(dx){
     qimen.skon[k1]=1;
     //osx=osx+"<br /><br />"
     var boxes="........".split(".");
-    var spc="&nbsp;&nbsp;"
+    var spc="&nbsp;&nbsp;&nbsp;"
     for (var i=0;i<3;i++){
         for (var j=0;j<3;j++){
             //k为顺序数字

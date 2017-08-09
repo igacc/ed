@@ -32,9 +32,10 @@ td {text-align:center}
 </div>
 <script>
 //初始化
+var hash;
 initQimen(gettime());
 //更新标题
-document.title=tconfig.apptitle + " "+window.location.hash.substr(3,2) + "-" + window.location.hash.substr(5,2) + "-" + window.location.hash.substr(7,2) + " " + window.location.hash.substr(9,2) + ":" + window.location.hash.substr(11,2);
+document.title=tconfig.apptitle + " "+hash.substr(2,2) + "-" + hash.substr(4,2) + "-" + hash.substr(6,2) + " " + hash.substr(8,2) + ":" + hash.substr(10,2);
 //更新抬头
 document.getElementsByTagName('p')[0].innerHTML=qimen.boxhead;
 //更新九宫 
@@ -47,7 +48,7 @@ function getbox(bid){
 }
 function gettime(){
     var dx=new Date();
-    var hash=window.location.hash.substr(1);
+    hash=window.location.hash.substr(1);
     if (hash=="" || hash=="now") {
         dar=[String(dx.getFullYear()),String(dx.getMonth()+1),String(dx.getDate()),String(dx.getHours()),String(dx.getMinutes()),String(dx.getSeconds())];
         for (var i=1;i<dar.length;i++){
