@@ -702,6 +702,7 @@ function initQimen(dx){
     qimen.skon[k1]=1;
     //osx=osx+"<br /><br />"
     var boxes="........".split(".");
+    var spc="&nbsp;&nbsp;"
     for (var i=0;i<3;i++){
         for (var j=0;j<3;j++){
             //k为顺序数字
@@ -712,8 +713,8 @@ function initQimen(dx){
                 
                 temp4=tconfig.zhonggong[(Math.abs(ju)+ju)/ju/2];
                 tg7=tconfig.zhonggong[(Math.abs(ju)+ju)/ju/2];
-                tg8="\u3000寄\u3000";
-                boxes[tg6]="\u3000"+t.liusan[tgan.substr(-3,1)] + tg8 + t.baguabyG[tgan.substr(-1,1)] + "<br />\u3000" + t.xingbyG[k] + tg8 + t.baguabyG[star.indexOf(tg7)]+"<br />\u3000"+t.liusan[dgan[k]]+ tg8 +t.baguabyG[temp4]+"<br /><br />" ;
+                tg8=spc+"寄"+spc;
+                boxes[tg6]=spc+t.liusan[tgan.substr(-3,1)] + tg8 + t.baguabyG[tgan.substr(-1,1)] + "<br />"+spc + t.xingbyG[k] + tg8 + t.baguabyG[star.indexOf(tg7)]+"<br />"+spc+t.liusan[dgan[k]]+ tg8 +t.baguabyG[temp4]+"<br /><br />" ;
             }
             else{                
             //osx=osx + k + ".";
@@ -725,11 +726,11 @@ function initQimen(dx){
             var xingstr=t.xingbyG[star[k]];
             var menstr=t.menbyB[men[k]];
             var shenstr=t.shenbyB[shen[k]];
-            var skonstr=(qimen.skon[k]==0)?"\u3000":"&#9851";
+            var skonstr=(qimen.skon[k]==0)?spc:"&#9851";
             if (tg3==star[k]) xingstr="<span style='font-weight:bold;color:gold'>" + xingstr + "</span>";
             if (mpos==k) menstr="<span style='font-weight:bold;color:gold'>" + menstr + "</span>";
             if (xpos==k) shenstr="<span style='font-weight:bold;color:gold'>" + shenstr + "</span>";
-            boxes[tg6]="\u3000"+shenstr + "\u3000" + xingstr + "\u3000" + t.liusan[tgan[k]] + "<br /><br />" +skonstr+ t.baguabyG[k] +"\u3000" + menstr  + "\u3000" + t.liusan[dgan[k]] + "<br /><br />";
+            boxes[tg6]=spc+shenstr + spc + xingstr + spc + t.liusan[tgan[k]] + "<br /><br />" +skonstr+ t.baguabyG[k] +spc + menstr  + spc + t.liusan[dgan[k]] + "<br /><br />";
             }
         }
     }
