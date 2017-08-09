@@ -39,6 +39,8 @@ var t={
         "值符 腾蛇 太阴 六合 白虎 玄武 九地 九天".split(" "),
     "shenbyB":
         "符 蛇 阴 合 虎 武 地 天".split(" "),
+    "xunkong":
+        "戌亥 申酉 午未 辰巳 寅卯 子丑".split(" "),
     "five":
         "木 火 土 金 水".split(" "),
     "zhibyS":
@@ -522,6 +524,15 @@ function boxIs(boxid,ruleid){
     return true;
 }
 
+function xun(ab){
+    var vidx=[0,-10,-8,-6,-4,-2];
+    k=t.gan.indexOf(ab.substr(0,1))-t.zhi.indexOf(ab.substr(1,1));
+    if (k>0) k=k-12;
+    //console.log("k",k);
+    k=vidx.indexOf(k);
+    return k;
+}
+
 function shige(){
     //天显时格和五不遇时
     var ox="";
@@ -671,6 +682,7 @@ function initQimen(dx){
     osx=osx+"<br />" + "时间&nbsp;&nbsp;"+qimen.dx.toLocaleString();
     osx=osx+"<br />" + "节气&nbsp;&nbsp;"+"阴阳"[(Math.abs(qimen.ju)+qimen.ju)/qimen.ju/2]+"遁&nbsp;&nbsp;" + t.no[Math.abs(qimen.ju)]+"局&nbsp;&nbsp;"+jieqi(qimen.dx).name+"&nbsp;&nbsp;"+"上中下"[sanyuan(qimen.dx,tconfig.yuanstyle)]+"元("+jieqi(qimen.dx).past+"天) ";
     osx=osx+"<br />" +"四柱&nbsp;&nbsp;"+qimen.sizhu.substr(0,2)+"&nbsp;&nbsp;"+qimen.sizhu.substr(2,2)+"&nbsp;&nbsp;"+qimen.sizhu.substr(4,2)+"&nbsp;&nbsp;"+qimen.sizhu.substr(6,2)+"&nbsp;&nbsp;";
+    osx=osx+"<br />" +"旬空&nbsp;&nbsp;"+t.xunkong[xun(qimen.sizhu.substr(0,2))]+"&nbsp;&nbsp;"+t.xunkong[xun(qimen.sizhu.substr(2,2))]+"&nbsp;&nbsp;"+t.xunkong[xun(qimen.sizhu.substr(4,2))]+"&nbsp;&nbsp;"+t.xunkong[xun(qimen.sizhu.substr(6,2))]+"&nbsp;&nbsp;";
     qimen.boxhead=osx+shige();
     //osx=osx+"<br /><br />"
     var boxes="........".split(".");
