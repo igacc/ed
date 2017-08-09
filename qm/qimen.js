@@ -713,7 +713,7 @@ function initQimen(dx){
                 temp4=tconfig.zhonggong[(Math.abs(ju)+ju)/ju/2];
                 tg7=tconfig.zhonggong[(Math.abs(ju)+ju)/ju/2];
                 tg8="\u3000寄\u3000";
-                boxes[tg6]="\u3000"+t.liusan[tgan.substr(-3,1)] + tg8 + t.baguabyG[tgan.substr(-1,1)] + "<br /><br />" + "\u3000"+t.liusan[dgan[k]]+ tg8 +t.baguabyG[temp4] + "<br />" + "\u3000"+ t.xingbyG[k] + tg8 + t.baguabyG[star.indexOf(tg7)];
+                boxes[tg6]="\u3000"+t.liusan[tgan.substr(-3,1)] + tg8 + t.baguabyG[tgan.substr(-1,1)] + "<br />\u3000" + t.xingbyG[k] + tg8 + t.baguabyG[star.indexOf(tg7)]+"<br />\u3000"+t.liusan[dgan[k]]+ tg8 +t.baguabyG[temp4]+"<br /><br />" ;
             }
             else{                
             //osx=osx + k + ".";
