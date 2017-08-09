@@ -1,6 +1,6 @@
 var tconfig={
-    "zhonggong":[1,1],//[1,7] or [1,1]
-    "yuanstyle":"classic",// average or classic
+    "zhonggong":[1,7],//[1,7] or [1,1]
+    "yuanstyle":"average",// average or classic
     "apptitle":"\u262F奇门遁甲",
 }
 var t={
@@ -295,6 +295,7 @@ var qimen={
     box:null,
     boxres:null,
     boxhead:null,
+    skon:[0,0,0,0,0,0,0,0,0,0],
 }
 function jieqivalue(yr,no){
     //从0开始，第一个节气是小寒
@@ -349,7 +350,7 @@ function yuezhu(dx){
     b=Math.floor(t.jieqibyyear.indexOf(jieqi(dx).name)/2);
     c=t.gan.indexOf(nianzhu(dx).substr(0,1));
     a=xs[c%5]+b-1;
-    a=a%10;
+    a=(a+10)%10;
     return t.gan[a] + t.zhibyjieqi[b];
 }
 function rizhu(dx){
@@ -544,11 +545,14 @@ function shige(){
 }
 
 function tellbox(boxid){
-    var ox,rid,swstate,ox2;
+    var ox,rid,swstate,ox2,skon,skgo;
     if (boxid!=4){
         swstate=t.liusan[qimen.tgan[boxid]]+" "+swsRel(t.liusan[qimen.tgan[boxid]],t.zhibyG[boxid])+"<br />";
         swstate=swstate+t.liusan[qimen.dgan[boxid]]+" "+swsRel(t.liusan[qimen.dgan[boxid]],t.zhibyG[boxid])+"<br />";
         ox="<h2>"+t.baguabyG[boxid]+t.no[boxid+1]+"宫</h2>"+swstate;
+        /*skon=t.xunkong[xun(qimen.sizhu.substr(6,2))];
+        if (t.zhibyG.indexOf(skon[1])==boxid){ox=ox+"<li><b>时空</b></li>";} 
+        else if (t.zhibyG.indexOf(skon[0])==boxid){ox="<li>时空</li>"+ox;} */
         for (var i=0;i<qimen.boxres[boxid].length;i++){
             rid=qimen.boxres[boxid][i];
             ox=ox+"<li><b>"+rules[rid].title+"</b><br />";
@@ -684,6 +688,18 @@ function initQimen(dx){
     osx=osx+"<br />" +"四柱&nbsp;&nbsp;"+qimen.sizhu.substr(0,2)+"&nbsp;&nbsp;"+qimen.sizhu.substr(2,2)+"&nbsp;&nbsp;"+qimen.sizhu.substr(4,2)+"&nbsp;&nbsp;"+qimen.sizhu.substr(6,2)+"&nbsp;&nbsp;";
     osx=osx+"<br />" +"旬空&nbsp;&nbsp;"+t.xunkong[xun(qimen.sizhu.substr(0,2))]+"&nbsp;&nbsp;"+t.xunkong[xun(qimen.sizhu.substr(2,2))]+"&nbsp;&nbsp;"+t.xunkong[xun(qimen.sizhu.substr(4,2))]+"&nbsp;&nbsp;"+t.xunkong[xun(qimen.sizhu.substr(6,2))]+"&nbsp;&nbsp;";
     qimen.boxhead=osx+shige();
+    //时空
+    var skon=t.xunkong[xun(qimen.sizhu.substr(6,2))];
+    var k0=t.zhibyG.indexOf(skon[0]);
+    var k1=t.zhibyG.indexOf(skon[1]);
+    if (k0==-1 || k1==-1) {
+        for (var i=0;i<9;i++) {
+            if (t.zhibyG[i].indexOf(skon[0])>-1) k0=i
+            if (t.zhibyG[i].indexOf(skon[1])>-1) k1=i
+        }
+    }
+    qimen.skon[k0]=1;
+    qimen.skon[k1]=1;
     //osx=osx+"<br /><br />"
     var boxes="........".split(".");
     for (var i=0;i<3;i++){
@@ -693,10 +709,11 @@ function initQimen(dx){
             //转换成宫格数字
             k=t.ordreal[k];
             if (k==4){
+                
                 temp4=tconfig.zhonggong[(Math.abs(ju)+ju)/ju/2];
                 tg7=tconfig.zhonggong[(Math.abs(ju)+ju)/ju/2];
-                tg8="&nbsp;&nbsp;&nbsp;&nbsp;寄&nbsp;&nbsp;&nbsp;&nbsp;";
-                boxes[tg6]=t.liusan[tgan.substr(-3,1)] + tg8 + t.baguabyG[tgan.substr(-1,1)] + "<br /><br />" + t.liusan[dgan[k]]+ tg8 +t.baguabyG[temp4] + "<br />" +  t.xingbyG[k] + tg8 + t.baguabyG[star.indexOf(tg7)];
+                tg8="\u3000寄\u3000";
+                boxes[tg6]="\u3000"+t.liusan[tgan.substr(-3,1)] + tg8 + t.baguabyG[tgan.substr(-1,1)] + "<br /><br />" + "\u3000"+t.liusan[dgan[k]]+ tg8 +t.baguabyG[temp4] + "<br />" + "\u3000"+ t.xingbyG[k] + tg8 + t.baguabyG[star.indexOf(tg7)];
             }
             else{                
             //osx=osx + k + ".";
@@ -708,10 +725,11 @@ function initQimen(dx){
             var xingstr=t.xingbyG[star[k]];
             var menstr=t.menbyB[men[k]];
             var shenstr=t.shenbyB[shen[k]];
+            var skonstr=(qimen.skon[k]==0)?"\u3000":"&#9851";
             if (tg3==star[k]) xingstr="<span style='font-weight:bold;color:gold'>" + xingstr + "</span>";
             if (mpos==k) menstr="<span style='font-weight:bold;color:gold'>" + menstr + "</span>";
             if (xpos==k) shenstr="<span style='font-weight:bold;color:gold'>" + shenstr + "</span>";
-            boxes[tg6]=shenstr + "&nbsp;&nbsp;&nbsp;&nbsp;" + xingstr + "&nbsp;&nbsp;&nbsp;&nbsp;" + t.liusan[tgan[k]] + "<br /><br />" + t.baguabyG[k] + "&nbsp;&nbsp;&nbsp;&nbsp;" + menstr  + "&nbsp;&nbsp;&nbsp;&nbsp;" + t.liusan[dgan[k]] + "<br /><br />";
+            boxes[tg6]="\u3000"+shenstr + "\u3000" + xingstr + "\u3000" + t.liusan[tgan[k]] + "<br /><br />" +skonstr+ t.baguabyG[k] +"\u3000" + menstr  + "\u3000" + t.liusan[dgan[k]] + "<br /><br />";
             }
         }
     }
