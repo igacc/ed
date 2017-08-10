@@ -463,7 +463,7 @@ function swsRel(sg,sz){
 
 //判断是否匹配某个格局
 function boxIs(boxid,ruleid){
-    var k,vk,v1,v11,v2,k1,k2;
+    var k,vk,v1,v11,v2,k1,k2,vn;
     var sub,insub,insubsub;
     var zs="年月日时",ks="干支";
     for (var key in rules[ruleid]){
@@ -472,7 +472,9 @@ function boxIs(boxid,ruleid){
             for (var i=0;i<zs.length;i++){
                 //替换年月日时->对应的六三
                 for (var j=0;j<ks.length;j++){
-                    rules[ruleid][key]=rules[ruleid][key].replace(new RegExp(zs[i]+ks[j], 'g'),qimen.sizhu.substr(i*2+j,1));                                
+                    vn=qimen.sizhu.substr(i*2+j,1);
+                    if (vn=="甲") vn=t.xunshou[xun(qimen.sizhu.substr(i*2+j,2))]; //干为甲变成六三
+                    rules[ruleid][key]=rules[ruleid][key].replace(new RegExp(zs[i]+ks[j], 'g'),vn);                                
                 }
                 
             }
