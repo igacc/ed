@@ -3,7 +3,7 @@
 <meta charset='utf-8' />
 <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' 'self' *.iga.cc *.34b.cc localhost">
-<title>Cards v0.621</title>
+<title>Cards v0.822</title>
 <style type="text/css">
 h2 {font-weight: normal}
 h3 {font-weight: normal}
@@ -76,7 +76,7 @@ h3 {font-weight: normal}
     d3.csv("/assets/allowed.txt", function(cc) {data.ck=cc;});
     //Model
     var data = {
-        copy1: '♥collected&nbsp;',
+        copy1: '★收藏夹&nbsp;',
         copy2: '☺',
         cat: 'zcards',
         frt: '点击开始!',
@@ -238,11 +238,12 @@ h3 {font-weight: normal}
         if (this.showme){
         scrollTo(document.getElementsByTagName("h3")[3].offsetLeft,document.getElementsByTagName("h3")[3].offsetTop);
         //如果为题库，替换颜色
+        var xii=(this.staronly)?this.stars[this.xid]:this.xid;
         var fxt=this.frt;
-        var itx=this.frt.split(ddd[this.xid].back)[1].split("<br")[0];console.log(itx);
+        var itx=this.frt.split(ddd[xii].back)[1].split("<br")[0];console.log(itx);
         if ("ABCDEF".indexOf(itx[2])>-1) itx=itx[0];
-        if ("ABCDEF".indexOf(ddd[this.xid].back)>-1 && this.showme){
-            fxt=fxt.replace(ddd[this.xid].back+itx,"<span style='color:red;'><b>"+ddd[this.xid].back+"</b>"+itx+"</span>");                    
+        if ("ABCDEF".indexOf(ddd[xii].back)>-1 && this.showme){
+            fxt=fxt.replace(ddd[xii].back+itx,"<span style='color:red;'><b>"+ddd[xii].back+"</b>"+itx+"</span>");                    
         }
         console.log(itx,this.frt ==fxt);
         if (itx!=""){this.frt=fxt;this.bac="";}
