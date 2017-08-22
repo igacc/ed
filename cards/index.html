@@ -78,7 +78,7 @@ h3 {font-weight: normal}
     var data = {
         copy1: '♥collected&nbsp;',
         copy2: '☺',
-        cat: 'the-little-prince',
+        cat: 'zcards',
         frt: '点击开始!',
         bac: '',
         pre: '',
@@ -239,10 +239,10 @@ h3 {font-weight: normal}
         scrollTo(document.getElementsByTagName("h3")[3].offsetLeft,document.getElementsByTagName("h3")[3].offsetTop);
         //如果为题库，替换颜色
         var fxt=this.frt;
-        var itx=ddd[this.xid].back+this.frt.split(ddd[this.xid].back)[1].split("<br")[0];console.log(itx);
-        if ("ABCDEF".indexOf(itx[3])>-1) itx=itx[0];
+        var itx=this.frt.split(ddd[this.xid].back)[1].split("<br")[0];console.log(itx);
+        if ("ABCDEF".indexOf(itx[2])>-1) itx=itx[0];
         if ("ABCDEF".indexOf(ddd[this.xid].back)>-1 && this.showme){
-            fxt=fxt.replace(itx,"<span style='color:red;font-weight:bold'>"+itx+"</span>");                    
+            fxt=fxt.replace(ddd[this.xid].back+itx,"<span style='color:red;'><b>"+ddd[this.xid].back+"</b>"+itx+"</span>");                    
         }
         console.log(itx,this.frt ==fxt);
         if (itx!=""){this.frt=fxt;this.bac="";}
