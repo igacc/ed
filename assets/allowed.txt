@@ -4,3 +4,5 @@ name,id
 @kindle,{f3924b37-1156-bef2-b4b9-6d7331c79a9a}
 @ruanxinger,{fc915c32-2ed7-9072-d802-4d0a1ddd23db}
 @jm,{0855fb91-eb47-c109-3b38-97abd0d47083}
+@陈王,{b2f97dcc-af45-9949-6acd-8e3dcf1a5645}
+@chen,{95591373-3fb3-f3ec-a083-53a9692f8a31}
