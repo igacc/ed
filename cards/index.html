@@ -77,8 +77,9 @@ h3 {font-weight: normal}
     //Model
     var data = {
         copy1: '★收藏夹&nbsp;',
-        copy2: '☺',
+        copy2: ' ',
         cat: 'zcards',
+        nocoll: '暂无收藏!',
         frt: '点击开始!',
         bac: '',
         pre: '',
@@ -86,7 +87,7 @@ h3 {font-weight: normal}
         showfc: false,
         xid: 0,
         ck:null,
-        username:'{Loading service}',
+        username:'{加载中……}',
         starred:false,
         skipped:false,
         count:0,
@@ -169,7 +170,7 @@ h3 {font-weight: normal}
                     }
                     this.stars=unique(this.stars);
                     if (this.stars.length==0){
-                        this.frt='no colletion yet!';
+                        this.frt=this.nocoll;
                         this.bac='';
                         }else{
                         //jump to 0
