@@ -247,7 +247,9 @@ h3 {font-weight: normal}
             fxt=fxt.replace(ddd[xii].back+itx,"<span style='color:red;'><b>"+ddd[xii].back+"</b>"+itx+"</span>");                    
         }
         console.log(itx,this.frt ==fxt);
-        if (itx!=""){this.frt=fxt;this.bac="";}
+        if (itx!=""){
+            this.frt=fxt;this.bac=ddd[xii].detail;
+            }
         }
         else{
         scrollTo(document.getElementsByTagName("h3")[2].offsetLeft,document.getElementsByTagName("h3")[2].offsetTop);
