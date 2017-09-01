@@ -43,7 +43,7 @@ a {color:rgb(246,246,248)}
 var title,soy="";
 reloadx();
 function reloadx(){
-    hash=decodeURI(window.location.hash.substr(1));
+    hash=decodeURI(window.location.hash.substr(cfg.hash_string.length));
     //设置为不可见
     document.getElementById("passage").style.display="none";
     document.getElementById("gen").style.display="none";
@@ -87,7 +87,7 @@ function reloadx(){
             soy="<p><b>索引</b></p><ul>";
             for (var jk in bbase){
                 //console.log(jk);
-                soy=soy+"<li><a href='#"+jk+"'>#"+jk+"</a></li>";
+                soy=soy+"<li><a href='"+cfg.hash_string+jk+"'>"+jk+"</a></li>";
             }
             soy=soy+"</ul>"
         }
@@ -127,10 +127,10 @@ function generate(){
     //console.log(Encrypt(xcontent,xpwd));
     //console.log('"'+document.getElementsByTagName("input")[1].value+'":"'+Encrypt(xcontent,xpwd)+'",\n');
     document.getElementById("g-output").value='"'+xtitle+'":"'+Encrypt(xcontent,xpwd)+'",\n';
-    document.getElementsByTagName("a")[0].innerHTML="#"+xtitle+"&"+xpwd;
-    document.getElementsByTagName("a")[0].href="#"+xtitle+"&"+xpwd;
-    document.getElementsByTagName("a")[1].innerHTML="#"+xtitle;
-    document.getElementsByTagName("a")[1].href="#"+xtitle;
+    document.getElementsByTagName("a")[0].innerHTML=xtitle+"&"+xpwd;
+    document.getElementsByTagName("a")[0].href=cfg.hash_string+xtitle+"&"+xpwd;
+    document.getElementsByTagName("a")[1].innerHTML=xtitle;
+    document.getElementsByTagName("a")[1].href=cfg.hash_string+xtitle;
 }
 function degenerate(){
     var pwd=document.getElementById("d-pass").value;
