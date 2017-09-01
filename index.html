@@ -29,8 +29,7 @@ a {color:rgb(246,246,248)}
 <button onclick='generate();'>生成</button><br />
 免密 <a href=''></a><br />
 安全 <a href=''></a><br />
-<!--编辑 <a href='https://github.com/anycolor/anycolor.github.io/edit/master/date/bbdata.js'>GITHUB</a>-->
-编辑 <a href='https://github.com/igacc/igacc.github.io/edit/master/bbdata.js'>GITHUB</a>
+编辑 <a href=''></a>
 </p>
 <!--浏览器解密-->
 <p id='degen' style="display:none">
@@ -38,20 +37,22 @@ a {color:rgb(246,246,248)}
 <button onclick='degenerate();'>解密</button><br />
 </p>
 <!--404-->
-<p id='default' style="display:none">
-欢迎访问IgA.cc，更多信息请关注公众号igacc。<br />请在网址<b>#</b>后输入正确的标题，然后输入密码查看。或者使用
-<a href='#gen'>生成器</a>。<br />
-</p>
+<p id='default' style="display:none"></p>
 </div>
 <script type="text/javascript">
 var title,soy="";
 reloadx();
 function reloadx(){
     hash=decodeURI(window.location.hash.substr(1));
+    //设置为不可见
     document.getElementById("passage").style.display="none";
     document.getElementById("gen").style.display="none";
     document.getElementById("degen").style.display="none";
     document.getElementById("default").style.display="none";
+    //初始化变量
+    document.getElementById("default").innerHTML=cfg.default_content;
+    document.getElementsByTagName("a")[2].href=cfg.edit_link;
+    document.getElementsByTagName("a")[2].innerHTML=cfg.edit_link;
     //生成加密 GEN
     if (hash=="gen"){
     title="生成器";
@@ -70,18 +71,17 @@ function reloadx(){
     //404 DEFAULT
     if (bbase[title]==undefined){
         console.log("err key",title);
-        title="秘密";
+        title=cfg.default_title;
         var tk=document.getElementById("default").innerHTML;
         if (soy==""){
-        soy="<p><b>索引</b></p><ul>";
-        for (var jk in bbase){
-            //console.log(jk);
-            soy=soy+"<li><a href='#"+jk+"'>#"+jk+"</a></li>";
+            soy="<p><b>索引</b></p><ul>";
+            for (var jk in bbase){
+                //console.log(jk);
+                soy=soy+"<li><a href='#"+jk+"'>#"+jk+"</a></li>";
+            }
+            soy=soy+"</ul>"
         }
-        soy=soy+"</ul>"
-        tk=tk+soy;
-        }
-        document.getElementById("default").innerHTML=tk;
+        document.getElementById("default").innerHTML=tk+soy;
         document.getElementById("default").style.display="inline";
     }
     //URL解密 PASSAGE
