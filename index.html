@@ -55,14 +55,25 @@ function reloadx(){
     document.getElementsByTagName("a")[2].innerHTML=cfg.edit_link;
     //生成加密 GEN
     if (hash=="gen"){
-    title="生成器";
-    document.getElementById("gen").style.display="inline";
-    document.getElementById("g-pass").value=getpass();
-    }
+        title="生成器";
+        document.getElementById("gen").style.display="inline";
+        document.getElementById("g-pass").value=getpass();
+        }
     //浏览器中解密 DEGEN
     else if (bbase[String(hash)]!=undefined) {
-    title=hash;
-    document.getElementById("degen").style.display="inline";
+        title=hash;
+        var justtext;
+        try{justtext=Decrypt(bbase[title],"");}
+        catch(err){justtext="";}
+        //进行密码解密
+        if (justtext==""){
+            document.getElementById("degen").style.display="inline";
+        }
+        //直接解谜
+        else{
+            document.getElementById("passage").innerHTML=justtext;
+            document.getElementById("passage").style.display="inline";
+        }
     }
     else
     {
@@ -70,7 +81,6 @@ function reloadx(){
     pwd=hash.split("&")[1];
     //404 DEFAULT
     if (bbase[title]==undefined){
-        console.log("err key",title);
         title=cfg.default_title;
         var tk=document.getElementById("default").innerHTML;
         if (soy==""){
