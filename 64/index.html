@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta charset='utf-8' />
+<meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' 'self' *.iga.cc *.ctt.li *.163.com localhost *.cnzz.com">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title></title>
+<style type="text/css">
+h1 {text-align:center}
+h2 {font-weight:normal}
+h3 {font-weight:normal}
+td {text-align:center}
+a {color:rgb(246,246,248)}
+</style>
+<script src="sixtyfour.js"></script>
+</head>
+<body>
+<h1 id='head'></h1>
+<p style='text-align:center;font-size:30'>
+<span name="baseimage"></span>
+<span name="baseimage"></span>
+<span name="baseimage"></span>
+<span name="baseimage"></span>
+<span name="baseimage"></span>
+<span name="baseimage"></span>
+<span name="baseimage"></span>
+<span name="baseimage"></span>
+<br />
+<span style='line-height:100%;font-weight:bold;font-size:80;text-align:center'>
+<span id='upperg'></span><br />
+<span id='lowerg'></span>
+</span>
+<p style='text-align:center' id='eles'></p>
+<p style='text-align:center' id='passage'></p>
+<script>
+var uppergua="",lowergua="";
+document.title=apptitle;
+document.getElementById("head").innerHTML=apptitle;
+for (var i=0;i<eightchar.length;i++){
+    document.getElementsByName("baseimage")[i].innerHTML=eightimage[i];
+    document.getElementsByName("baseimage")[i].setAttribute("onclick","addx('"+eightchar[i]+"');");
+}
+function addx(gua){
+    //第一个
+    if ((uppergua+lowergua)=="") {uppergua=gua;}
+    else if (lowergua==""){lowergua=gua;}
+    else {uppergua=lowergua;lowergua=gua;}
+    var els=uppergua+"上"+lowergua+"下";
+    document.getElementById("upperg").innerHTML=eightimage[eightchar.indexOf(uppergua)];
+    document.getElementById("lowerg").innerHTML=eightimage[eightchar.indexOf(lowergua)];
+    document.getElementById("eles").innerHTML=els;
+    for (var i=0;i<sixtyfour.length;i++){
+        if (sixtyfour[i].elements==els){
+            document.getElementById("passage").innerHTML=sixtyfour[i].detail;
+            document.getElementById("head").innerHTML=sixtyfour[i].name;
+            document.getElementById("eles").innerHTML="["+String(i+1)+"]"+els+"，"+sixtyfour[i].name2
+            break;
+        }
+    }
+    
+}
+</script>
+<div style="display:none"><script src="https://s11.cnzz.com/z_stat.php?id=1255344758&web_id=1255344758" language="JavaScript"></script></div>
+</body>
+</html>
