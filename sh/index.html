@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' 'self' *.iga.cc *.ctt.li *.163.com localhost *.cnzz.com">
 <meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
 <script src="shanghan.js"></script>
-<title></title>
+<title>伤寒论方</title>
 <link rel="stylesheet" href="mobi.min.css" />
 </head>
 <body>
@@ -16,22 +16,26 @@
 <script>
 getcats();
 function getcats(){
-    var fx='';
+    var fx='<p class="text-right">';
     for (var i=0;i<shformulacat.length;i++) {
-        fx=fx+'<p class="text-right" onclick="getcatsfang(this)" id="cat-'+i+'">'+shformulacat[i]+'</p>';
+        if (i%2==0) fx=fx+'</p><p class="text-right">';
+        fx=fx+'<span onclick="getcatsfang(this)" id="cat-'+i+'">'+shformulacat[i]+'</span>&nbsp;&nbsp;';
         }
+    fx=fx+'</p>';
     document.getElementById("cats").innerHTML=fx;    
 }
 function getcatsfang(obj){
-    var fx="";
+    var fx='<p class="text-left text-primary">';
     var started=false;
     for (var i=0;i<shformula.length;i++){
         if (shformulacat[obj.id.split("-")[1]]==shformula[i][4]){
             started=true;
-            fx=fx + '<p class="text-left text-primary" onclick="getfangdetail(this)" id="fang-'+i+'">'+shformula[i][0]+"</p>";
+            if (i%2==0) fx=fx+'</p><p class="text-left text-primary">'
+            fx=fx + '<span onclick="getfangdetail(this)" id="fang-'+i+'">'+shformula[i][0]+"</span>&nbsp;&nbsp;";
         }
         else {if (started) break;}
     }
+    fx=fx+'</p>';
     document.getElementById("catsfang").innerHTML=fx;
 }
 function getfangdetail(obj){
