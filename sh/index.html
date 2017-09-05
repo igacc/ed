@@ -1,0 +1,54 @@
+<html>
+<head>
+<meta charset='utf-8' />
+<meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' 'self' *.iga.cc *.ctt.li *.163.com localhost *.cnzz.com">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<script src="shanghan.js"></script>
+<title></title>
+<link rel="stylesheet" href="mobi.min.css" />
+</head>
+<body>
+<h5 id='detail'></h5>
+<div class="flex-left units-gap">
+<div class="unit" id='cats'></div>
+<div class="unit" id='catsfang'></div>
+</div>
+<script>
+getcats();
+function getcats(){
+    var fx='';
+    for (var i=0;i<shformulacat.length;i++) {
+        fx=fx+'<p class="text-right" onclick="getcatsfang(this)" id="cat-'+i+'">'+shformulacat[i]+'</p>';
+        }
+    document.getElementById("cats").innerHTML=fx;    
+}
+function getcatsfang(obj){
+    var fx="";
+    var started=false;
+    for (var i=0;i<shformula.length;i++){
+        if (shformulacat[obj.id.split("-")[1]]==shformula[i][4]){
+            started=true;
+            fx=fx + '<p class="text-left text-primary" onclick="getfangdetail(this)" id="fang-'+i+'">'+shformula[i][0]+"</p>";
+        }
+        else {if (started) break;}
+    }
+    document.getElementById("catsfang").innerHTML=fx;
+}
+function getfangdetail(obj){
+    //alert(obj.id);
+    var fx="";
+    var cx=shformula[Number(obj.id.split("-")[1])][2].split(" ");
+    for (var i=0;i<cx.length;i++){
+        fx=fx+"<p>"+cx[i]+". "+shtext[Number(cx[i])-1].split("<br />")[0]+"</p>";
+    }
+    document.getElementById("detail").innerHTML=fx;    
+}
+function getfulltext(){
+    var fx="";
+    for (var i=0;i<shtext.length;i++) {fx=fx+shtext[i].split("<br />")[0]+"<br />";}
+    document.getElementById("detail").innerHTML=fx;
+}
+</script>
+<p style="text-align:center">&copy;2017</p>
+</body>
+</html>
