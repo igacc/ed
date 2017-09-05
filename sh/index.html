@@ -45,7 +45,8 @@ function getfangdetail(obj){
     for (var i=0;i<cx.length;i++){
         fx=fx+"<p>"+cx[i]+". "+shtext[Number(cx[i])-1].split("<br />")[0]+"</p>";
     }
-    document.getElementById("detail").innerHTML=fx;    
+    document.getElementById("detail").innerHTML=fx;   
+    document.scrollTo(0,0);
 }
 function getfulltext(){
     var fx="";
