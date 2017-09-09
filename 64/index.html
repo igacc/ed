@@ -39,7 +39,7 @@ var uppergua="",lowergua="";
 document.title=apptitle;
 document.getElementById("head").innerHTML=apptitle;
 for (var i=0;i<eightchar.length;i++){
-    document.getElementsByName("baseimage")[i].innerHTML=eightimage[i];
+    document.getElementsByName("baseimage")[i].innerHTML=eightchar[i];
     document.getElementsByName("baseimage")[i].setAttribute("onclick","addx('"+eightchar[i]+"');");
 }
 function addx(gua){
