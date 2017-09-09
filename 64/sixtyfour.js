@@ -1,4 +1,5 @@
-var eightimage="☰☱☲☳☴☵☶☷";
+var eightimage='___<br />___<br />___,_<span style="color:white">_</span>_<br />___<br />___,___<br />_<span style="color:white">_</span>_<br />___,_<span style="color:white">_</span>_<br />_<span style="color:white">_</span>_<br />___,___<br />___<br />_<span style="color:white">_</span>_,_<span style="color:white">_</span>_<br />___<br />_<span style="color:white">_</span>_,___<br />_<span style="color:white">_</span>_<br />_<span style="color:white">_</span>_,_<span style="color:white">_</span>_<br />_<span style="color:white">_</span>_<br />_<span style="color:white">_</span>_'.split(",");
+var eightimagezero="☰☱☲☳☴☵☶☷";
 var eightchar="乾兑离震巽坎艮坤";
 var apptitle="周易";
 var sixtyfour=[
