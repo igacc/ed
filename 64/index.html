@@ -16,22 +16,33 @@ a {color:rgb(246,246,248)}
 </head>
 <body>
 <h1 id='head'></h1>
-<p style='font-size:30;'>
-<div class='flex-center units-gap flex-wrap'>
-<span class='unit' style='text-align:justify;font-size:30;' name="baseimage"></span>
-<span class='unit' style='text-align:justify;font-size:30;' name="baseimage"></span>
-<span class='unit' style='text-align:justify;font-size:30;' name="baseimage"></span>
-<span class='unit' style='text-align:justify;font-size:30;' name="baseimage"></span>
-<span class='unit' style='text-align:justify;font-size:30;' name="baseimage"></span>
-<span class='unit' style='text-align:justify;font-size:30;' name="baseimage"></span>
-<span class='unit' style='text-align:justify;font-size:30;' name="baseimage"></span>
-<span class='unit' style='text-align:justify;font-size:30;' name="baseimage"></span>
+<div class='flex-left units-gap flex-wrap text-center' style='font-size:30;'>
+<div class='unit'>
+    <div class='flex-vertical flex-right'>
+    <span class='unit' name="baseimage" style="transform:rotate(-45deg);"></span>
+    <span class='unit' name="baseimage" style="transform:rotate(-90deg);"></span>
+    <span class='unit' name="baseimage" style="transform:rotate(-135deg);"></span>
+    </div>
 </div>
-</p>
-<p style=';font-weight:bold;font-size:80;text-align:center;line-height:30%'>
+<div class='unit'>
+    <div class='flex-vertical flex-center'>
+    <span class='unit' name="baseimage"></span>
+    <span class='unit' name="nothing">&nbsp;</span>
+    <span class='unit' name="baseimage"></span>
+    </div>
+</div>
+<div class='unit'>
+    <div class='flex-vertical flex-left'>
+    <span class='unit' name="baseimage" style="transform:rotate(45deg);"></span>
+    <span class='unit' name="baseimage" style="transform:rotate(90deg);"></span>
+    <span class='unit' name="baseimage" style="transform:rotate(135deg);"></span>
+    </div>
+</div>
+</div>
+<div style='font-weight:bold;font-size:80;text-align:center;line-height:100%'>
 <span id='upperg'></span><br />
 <span id='lowerg'></span>
-</p>
+</div>
 <p style='text-align:center' id='eles'></p>
 <p style='text-align:left' id='passage'></p>
 <script>
@@ -39,17 +50,19 @@ var uppergua="",lowergua="";
 document.title=apptitle;
 document.getElementById("head").innerHTML=apptitle;
 for (var i=0;i<eightchar.length;i++){
-    document.getElementsByName("baseimage")[i].innerHTML=eightchar[i];
-    document.getElementsByName("baseimage")[i].setAttribute("onclick","addx('"+eightchar[i]+"');");
+    document.getElementsByName("baseimage")[i].innerHTML=eightimagezero[eidx[i]];
+    document.getElementsByName("baseimage")[i].setAttribute("onclick","addx('"+eightchar[eidx[i]]+"');");
 }
 function addx(gua){
     //第一个
     if ((uppergua+lowergua)=="") {uppergua=gua;}
     else if (lowergua==""){lowergua=gua;}
     else {uppergua=lowergua;lowergua=gua;}
-    var els=uppergua+"上"+lowergua+"下";
-    document.getElementById("upperg").innerHTML=eightimage[eightchar.indexOf(uppergua)];
-    document.getElementById("lowerg").innerHTML=eightimage[eightchar.indexOf(lowergua)];
+    var els=uppergua+"上";
+    if (lowergua!="") els=els+lowergua+"下"
+    console.log(eightchar.indexOf(lowergua));
+    document.getElementById("upperg").innerHTML=eightimagezero[eightchar.indexOf(uppergua)];
+    document.getElementById("lowerg").innerHTML=(lowergua!="")?eightimagezero[eightchar.indexOf(lowergua)]:"&nbsp;";
     document.getElementById("eles").innerHTML=els;
     for (var i=0;i<sixtyfour.length;i++){
         if (sixtyfour[i].elements==els){
