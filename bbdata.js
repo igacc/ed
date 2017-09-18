@@ -1,6 +1,6 @@
 var cfg={
     "default_title":"IgA",
-    "default_content":"欢迎访问IgA.cc，更多信息请关注公众号igacc。<br />请在网址<b>#</b>后输入正确的标题，然后输入密码查看。或者使用<a href='#!/gen'>生成器</a>。<br />",
+    "default_content":"欢迎访问IgA.cc，提供肾脏病相关资讯(建设中)。更多信息请关注公众号goal。<br />请在网址<b>#</b>后输入正确的标题，然后输入密码查看。<br />",
     "edit_link":"https://github.com/igacc/igacc.github.io/edit/master/bbdata.js",//https://github.com/anycolor/anycolor.github.io/edit/master/date/bbdata.js
     "hash_string":"#!/",
 }
