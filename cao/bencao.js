@@ -320,12 +320,15 @@ var bencao=[
 ];
 function onin(keyword){
     var flx='<div class="flex-left text-center units-gap flex-wrap">';
-    var outsx=flx;
+    var x=Math.min(4,parseInt(document.body.offsetWidth/200));console.log(x);
     if (keyword==""){outsx=bencaopass;} else{
     var res=telllist(keyword);
+    outsx='<span class="text-muted">'+res.length+' 结果</span>';
+    outsx=outsx+flx;
     for (var i=0;i<res.length;i++){
+        
         //if (i%3==0) outsx=outsx+"</div>"+flx;
-        outsx=outsx+'<div class="unit-1-3">'+tellmed(res[i])+'</div>';
+        outsx=outsx+'<div class="unit-1-'+x+'">'+tellmed(res[i])+'</div>';
     }
     outsx=outsx+"</div>";
     if (keyword.charCodeAt(0) > 255) outsx=outsx.replace(new RegExp(keyword, 'g'),"<span class='text-danger'>"+keyword+"</span>");
@@ -353,7 +356,6 @@ function telllist(keyword){
             }
         }
     }
-    /*
     for (var i=0;i<bencao.length;i++){
         if (res.indexOf(i)==-1){
             if (bencao[i].class.indexOf(keyword)>-1){
@@ -361,7 +363,6 @@ function telllist(keyword){
             }
         }
     }
-    */
     if (fullmatch>-1) res.unshift(fullmatch);
     return res;
 }
