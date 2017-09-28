@@ -93,7 +93,7 @@ var bencao=[
 {"name":"五味","class":"草部中品","content":"酸温。主益气、咳逆上气，劳伤羸瘦，补不足，强阴，益男子精。生山谷。"},
 {"name":"秦艽","class":"草部中品","content":"苦平。主治寒热邪气，寒湿风痹肢节痛，下水利小便。生山谷。"},
 {"name":"黄芩","class":"草部中品","content":"苦平。主治诸热黄疸，肠澼泄利，逐水，下血闭，恶疮疽蚀，火疡。一名腐肠。生川谷。"},
-{"name":"勺药","class":"草部中品","content":"苦。主治邪气腹痛，除血痹，破坚积寒热疝瘕，止痛，利小便，益气。生川谷。"},
+{"name":"勺药","class":"草部中品","content":"苦。主治邪气腹痛，除血痹，破坚积寒热疝瘕，止痛，利小便，益气。生川谷。"},
 {"name":"干姜","class":"草部中品","content":"辛温。主治胸满咳逆上气，温中、止血，出汗，逐风湿痹，肠澼下利，生者尤良。久服去臭气，通神明。生川谷。"},
 {"name":"蒿本","class":"草部中品","content":"辛微温。主治妇人疝瘕，阴中寒肿痛，腹中急，除风头痛，长肌肤，悦颜色。一名鬼卿，一名地新。生山谷。"},
 {"name":"麻黄","class":"草部中品","content":"苦温无毒。主治中风伤寒头痛，温疟，发表出汗，去邪热气，止欬逆上气，除寒热，破癥坚积聚。一名龙沙。生山谷。"},
@@ -319,11 +319,11 @@ var bencao=[
 {"name":"腐婢","class":"米谷部下品","content":"辛平。主治痎疟寒热，邪气，泄利，阴不起，病酒头痛。"},
 ];
 function onin(keyword){
-    var flx='<div class="flex-left text-center units-gap flex-wrap">';
-    var x=Math.min(4,parseInt(document.body.offsetWidth/200));console.log(x);
-    if (keyword==""){outsx=bencaopass;} else{
+    var flx='<div class="flex-left text-center units-gap-big flex-wrap">';
+    var x=Math.min(4,parseInt(document.body.offsetWidth/270));console.log(x);
+    if (keyword==""){outsx='<div>'+bencaopass+"</div>";} else{
     var res=telllist(keyword);
-    outsx='<span class="text-muted">'+res.length+' 结果</span>';
+    outsx='<span  class="text-muted">'+res.length+' 结果</span>';
     outsx=outsx+flx;
     for (var i=0;i<res.length;i++){
         
@@ -368,7 +368,7 @@ function telllist(keyword){
 }
 function tellmed(id){
     var outsx="";
-    outsx="<h2>"+bencao[id].name+'</h2><div class="text-left">'+bencao[id].class+"<br />"+bencao[id].content+"</div>";
+    outsx="<h2>"+bencao[id].name+'</h2><div class="text-left" >'+bencao[id].class+"<br />"+bencao[id].content+"</div>";
     return outsx;
 }
 (function () {

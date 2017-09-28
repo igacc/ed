@@ -5,15 +5,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link rel="stylesheet" href="mobi.min.css" />
 <title>神农本草经</title>
+<script src="bencao.js"></script>
 </head>
 <body>
-<script>
-if ('serviceWorker' in navigator) {
- navigator.serviceWorker.register('sw.js');
-}
-</script>
-<script src="bencao.js"></script>
+<div class="flex-left">
+<div class="container-fluid">
 <form class="form"><input id="sc" type="text" placeholder="搜索" oninput="onin(event.target.value)"></input></form>
 <div id="display"></div>
+</div>
+</div>
 </body>
 </html>
