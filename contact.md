@@ -1,14 +1,14 @@
 ---
 layout: page
-title: Contact
+title: 联系我们
 tagline: Contact iga.cc
 ---
 
-Jekyll is a great tool to create static sites but with static site, there's no backend to send your data to: that is why it's hard to put a form on a Jekyll site.
+IgA世界提供了易于阅读的科普信息，旨在为IgA肾病等疾病其困扰的患者与普通群众提供一个可信赖的自学平台。
 
-Here listed some resources which provide  a saas service as a backend for forms (contact forms, hiring forms, etc.) to designers and developers like you:
-1. [Formspree (also open source, free)](https://formspree.io/)
-2. [FormKeep](https://formkeep.com/guides/contact-form-jekyll)
-3. [Simple Form](https://getsimpleform.com/)
+如在访问、浏览过程中产生任何疑问或者争议，请联系我们：
+1. [邮箱](mailto://contact@iga.cc)
+2. [阅读更多](http://www.mayoclinic.org/diseases-conditions/iga-nephropathy/home/ovc-20199316)
+3. 微信公众号：搜索“Goal”即可添加
 
-[Go to the Home Page]({{ site.url }}{{ site.baseurl }})
+[回到首页]({{ site.url }}{{ site.baseurl }})
