@@ -13,11 +13,13 @@ cayman-blog:
 
 theme: # leave it empty
 
+cnzz:1257422626 #cnzz stat id
+
 # social
 author: "JM"
 image: /thumbnail-jumbo.png
 twitter:
-  username: 
+  username:tohno 
 #  site:
 facebook:
   #publisher: 1592372034171500
