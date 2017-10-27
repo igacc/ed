@@ -1,3 +1,0 @@
-front,back
-{{front}},{{back}}
-<p>欢迎访问，请选择要使用的卡片集：</p><ul><li><a href='#practice'>#practice</a></li><li><a href='#practice2017'>#practice2017</a></li></ul><p>更多资源请关注公众号IGACC</p><img width="50%" src="wx.jpg" />, 

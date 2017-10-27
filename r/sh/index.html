@@ -1,0 +1,59 @@
+<html>
+<head>
+<meta charset='utf-8' />
+<meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' 'self' *.iga.cc *.ctt.li *.163.com localhost *.cnzz.com">
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<script src="shanghan.js"></script>
+<title>伤寒论方</title>
+<link rel="stylesheet" href="mobi.min.css" />
+</head>
+<body>
+<h5 id='detail' style="margin:10px"></h5>
+<div class="flex-left units-gap">
+<div class="unit" id='cats'></div>
+<div class="unit" id='catsfang'></div>
+</div>
+<script>
+getcats();
+function getcats(){
+    var fx='<p class="text-right">';
+    for (var i=0;i<shformulacat.length;i++) {
+        if (i%2==0) fx=fx+'</p><p class="text-right">';
+        fx=fx+'<span onclick="getcatsfang(this)" id="cat-'+i+'">'+shformulacat[i]+'</span>&nbsp;&nbsp;';
+        }
+    fx=fx+'</p>';
+    document.getElementById("cats").innerHTML=fx;    
+}
+function getcatsfang(obj){
+    var fx='<p class="text-left text-primary">';
+    var started=false;
+    for (var i=0;i<shformula.length;i++){
+        if (shformulacat[obj.id.split("-")[1]]==shformula[i][4]){
+            started=true;
+            if (i%2==0) fx=fx+'</p><p class="text-left text-primary">'
+            fx=fx + '<span onclick="getfangdetail(this)" id="fang-'+i+'">'+shformula[i][0]+"</span>&nbsp;&nbsp;";
+        }
+        else {if (started) break;}
+    }
+    fx=fx+'</p>';
+    document.getElementById("catsfang").innerHTML=fx;
+}
+function getfangdetail(obj){
+    //alert(obj.id);
+    var fx="";
+    var cx=shformula[Number(obj.id.split("-")[1])][2].split(" ");
+    for (var i=0;i<cx.length;i++){
+        fx=fx+"<p>"+cx[i]+". "+shtext[Number(cx[i])-1].split("<br />")[0]+"</p>";
+    }
+    document.getElementById("detail").innerHTML=fx;   
+    document.scrollTo(0,0);
+}
+function getfulltext(){
+    var fx="";
+    for (var i=0;i<shtext.length;i++) {fx=fx+shtext[i].split("<br />")[0]+"<br />";}
+    document.getElementById("detail").innerHTML=fx;
+}
+</script>
+<p style="text-align:center">&copy;2017</p>
+</body>
+</html>

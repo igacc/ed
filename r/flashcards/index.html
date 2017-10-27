@@ -1,0 +1,248 @@
+<html>
+<head>
+<meta charset='utf-8' />
+<meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<title>Cards v0.621</title>
+<style type="text/css">
+h2 {font-weight: normal}
+h3 {font-weight: normal}
+</style>
+<script src="/r/assets/vue.min.js"></script>
+<script src="/r/assets/d3.min.js"></script>
+<script src="/r/assets/cookie.js"></script>
+<script src="/r/assets/store.min.js"></script>
+</head>
+<body>
+<div id="app">
+    <!--welcome-->
+    <div style='color:rgb(200,200,200);text-align:center' v-show="username.substr(0,1)!='{'">hello {{username}}</div>
+    <div style='color:rgb(200,200,200);text-align:center' v-show="username.substr(0,1)=='{'">hello guest, to use the flashcards, please copy <br /><input size="100" readonly="readonly" v-model='username' /><br /> and send it to weixinid:igacc.<br /></div>
+    <!--navbar-->
+    <h3 style="float:right"><span v-if="starred" v-on:click="starred=!starred"> ヽ(｀⌒´)ノ</span>
+    <span style="float:right;" v-on:click="starred=!starred" v-else> ( •̀ ᴗ •́ ) </span><br /></h3>        
+    <h3><span v-on:click="Fresh('prev')">&lt;&lt;</span><input type="text" size="5" v-model="xid" v-on:input="Fresh('curr')" /><span v-on:click="Fresh('next')">&gt;&gt;</span>
+    <!--front--></h3>
+    <h3><label  v-show="username.substr(0,1)!='{'" v-html="frt" v-on:click="if (!showme)showme=true;else Fresh('next');"></label></h3>
+    <!--back-->
+    <h3 v-show="showme && bac!=''">
+    <s><span v-if="skipped" v-html="bac" v-on:click="Fresh('next')"></span></s>
+    <span v-if="!skipped" v-html="bac" v-on:click="Fresh('next')"></span>
+    </h3>
+    <!--setting-->               
+    <h3 style="display:none">
+    <span v-if="skipped" v-on:click="skipped=!skipped">skipped</span>
+    <span v-on:click="skipped=!skipped" v-else>skip</span> 
+    </h3>
+    <p style='color:rgb(200,200,200);text-align:center'>
+    <span v-once v-html="copy1" v-if="staronly" style='color:rgb(200,155,155)' v-on:click="Starlist()"></span>
+    <span v-once v-html="copy1" v-else v-on:click="Starlist()"></span>
+    <span v-once v-html="copy2" v-on:click="showfc=!showfc"></span>
+    </p>
+    <p style="text-align:center" v-show="showfc"><input type="text" size=10 v-model="cat" v-on:keyup.enter="window.location.hash='#' + cat;"/></p>
+</div>
+    <script type="text/javascript">
+    function rang(min,max){
+        var cur=max-min+1;
+        return Math.floor(Math.random()*cur+min);
+    }
+    function unique(data){
+        data = data || [];
+        var a = {};
+        for (var i=0; i<data.length; i++) {
+        var v = data[i];
+        if (typeof(a[v]) == 'undefined'){
+        a[v] = 1;
+        }
+        };
+        data.length=0;
+        for (var i in a){
+        data[data.length] = i;
+        }
+        return data;
+    } 
+    function user(){
+        if (getCookie("device")==null) setCookie("device",getGuid(),"d300");
+        var dv=getCookie("device");
+        for (var i=0;i<data.ck.length;i++)
+            if (data.ck[i].id==dv){ return data.ck[i].name;break;}
+            //return "guest";        
+            return dv;        
+    }
+    window.onhashchange=function(){  
+            vue.Reload();
+        };
+    var ddd;
+    d3.csv("allowed.txt", function(cc) {data.ck=cc;});
+    //Model
+    var data = {
+        copy1: '&copy;iga.cc',
+        copy2: '☺',
+        cat: 'list',
+        frt: '点击开始!',
+        bac: '',
+        pre: '',
+        showme: true,
+        showfc: false,
+        xid: 0,
+        ck:null,
+        username:'{Loading service}',
+        starred:false,
+        skipped:false,
+        count:0,
+        stars:new Array(),
+        staronly:false,
+    }
+
+    //ViewModel
+    var vue = new Vue({
+        el: '#app',
+        data: data,
+        methods: {
+            Fresh: function (action) {
+                this.showme=false;
+                var themax=(this.staronly)?this.stars.length-1:ddd.length-1;
+                if (action=='next')
+                    this.xid++;
+                else if (action=='prev')
+                    this.xid--;
+                else if (action=='rand')
+                    this.xid=rang(1,themax);
+                if (this.xid>themax)
+                    this.xid=1;
+                else if (this.xid<1)
+                    this.xid=themax;
+                //alert(this.xid);
+                var idx=(this.staronly)?this.stars[this.xid]:this.xid;
+                var kn=String(idx);
+                var kcount=(store.has(this.pre + "-coun-" + kn))?store(this.pre + "-coun-" + kn):"0";
+                //console.log("store:" + store(this.pre + "-coun-" + kn));
+                //console.log("kcount:" + kcount);
+                this.count=Number(kcount)+1;
+                this.starred=(store.has(this.pre + "-star-" + kn));
+                this.skipped=(store.has(this.pre + "-skip-" + kn));
+                //根据ddd[0]的模板，设定FRT与BAC，要求必须有front back字段
+                var fxt;
+                fxt=ddd[0].back;
+                var argx=fxt.split("{{");
+                for (var i=0;i<argx.length;i++){
+                    argx[i]=argx[i].split("}}")[0];
+                    if (argx[i]=="count"){
+                    fxt=fxt.replace("{{" + argx[i] + "}}",String(this[argx[i]]));
+                    }
+                    else{       
+                    fxt=fxt.replace("{{" + argx[i] + "}}",ddd[idx][argx[i]]);
+                    //console.log("idx " + idx + "arg" + argx[i] + "ddd" + ddd[idx][argx[i]]);
+                    }
+                }
+                this.bac=fxt;
+                fxt=ddd[0].front;
+                var argx=fxt.split("{{");
+                for (var i=0;i<argx.length;i++){
+                    argx[i]=argx[i].split("}}")[0];
+                    if (argx[i]=="count"){
+                    fxt=fxt.replace("{{" + argx[i] + "}}",String(this[argx[i]]));
+                    }
+                    else{       
+                    fxt=fxt.replace("{{" + argx[i] + "}}",ddd[idx][argx[i]]);
+                    }
+                }
+                this.frt=fxt;
+           },
+           Update: function(){
+                var idx=(this.staronly)?this.stars[this.xid]:this.xid;
+                var kn=String(idx);
+                if (this.starred) store(this.pre + "-star-" + kn,"ok"); else store(this.pre + "-star-" + kn,false);
+                if (this.skipped) store(this.pre + "-skip-" + kn,"ok"); else store(this.pre + "-skip-" + kn,false);
+                store(this.pre + "-coun-" + kn,String(this.count));
+                //console.log("this.count:" + this.count);
+
+            },
+           Starlist: function(){
+                this.staronly=!this.staronly;
+                //跳转思路：转到收藏夹，如果有，从0开始，没有修改显示；转回全部，如果没有，恢复显示，如果有，跳到收藏夹正在看的位置
+                if (this.staronly){
+                    var res=store.search(this.pre + "-star-");
+                    this.stars=new Array();
+                    for (var key in res){
+                        this.stars.push(Number(key.split("-")[2]));
+                    }
+                    this.stars=unique(this.stars);
+                    if (this.stars.length==0){
+                        this.frt='no colletion yet!';
+                        this.bac='';
+                        }else{
+                        //jump to 0
+                        this.xid=0;
+                        this.Fresh('next');                
+                    }
+                }
+                else{
+                    if (this.stars.length==0){
+                    this.xid=this.xid-1;
+                    this.Fresh('next');
+                    }
+                    else{
+                    //jump to where it used to be
+                    var ik=this.stars[this.xid]
+                    this.xid=(!isNaN(ik))?ik-1:0;
+                    this.Fresh('next');
+                    }
+                }
+           },
+           Reload: function(){
+                this.username=user();
+                this.showfc=false;
+                var hash=window.location.hash.substr(1);
+                if (hash==""){
+                window.location.hash="#" + this.cat;
+                hash=this.cat; 
+                }
+                this.cat='';
+                this.pre=hash.split(".")[0];
+                document.title=this.pre;
+                d3.csv(hash + ".txt",function(dd) {
+                    ddd=dd;
+                    //after loading table
+                    var tk=Number(store(data.pre + "-lastxid"));
+                    data.xid=(!isNaN(tk))?tk-1:0;
+                    vue.Fresh('next');
+                    });
+           },
+        }
+    });
+    vue.$watch('ck', function () {
+        //this.frt=this.xxx[0].front;
+        //执行其他代码
+        this.Reload();
+    });
+    vue.$watch('count',function(){
+        //console.log("count change");
+        this.Update();
+    });
+    vue.$watch('skipped',function(){
+        //console.log("skip change");
+        this.Update();
+    });
+    vue.$watch('starred',function(){
+        //console.log("star change");
+        this.Update();
+    });
+    vue.$watch('xid',function(){
+        //console.log("star change");
+        var kx=(this.staronly)?this.stars[this.xid]:this.xid;
+        if (kx!=0){store(this.pre + "-lastxid",String(kx));}
+    });
+    vue.$watch('showme',function(){
+        //console.log("star change");
+        if (this.showme){
+        scrollTo(document.getElementsByTagName("h3")[3].offsetLeft,document.getElementsByTagName("h3")[3].offsetTop);
+        }
+        else{
+        scrollTo(document.getElementsByTagName("h3")[2].offsetLeft,document.getElementsByTagName("h3")[2].offsetTop);
+        }
+    });
+     //store.clear();
+    </script>
+<div style="display:none;"><script src="https://s4.cnzz.com/z_stat.php?id=1257422626&web_id=1257422626" language="JavaScript"></script></div>
+</body>
+</html>
