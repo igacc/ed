@@ -13,7 +13,7 @@ cayman-blog:
 
 theme: # leave it empty
 
-cnzz:1257422626 #cnzz stat id
+cnzz: 1257422626 #cnzz stat id
 
 # social
 author: "JM"
