@@ -1,7 +1,7 @@
 var cfg={
     "default_title":"Jm's Notes",
     "default_content":"使用<a href='#!/gen'>生成器</a>。<br />",
-    "edit_link":"https://github.com/igacc/igacc.github.io/edit/master/notes/bbdata.js",//https://github.com/anycolor/anycolor.github.io/edit/master/date/bbdata.js
+    "edit_link":"https://github.com/igacc/igacc.github.io/edit/master/r/notes/bbdata.js",//https://github.com/anycolor/anycolor.github.io/edit/master/date/bbdata.js
     "hash_string":"#!/",
 }
 
