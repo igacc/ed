@@ -1,7 +1,8 @@
 var tconfig={
-    "zhonggong":[1,7],//[1,7] or [1,1]
+    "zhonggong":[1,7],//[1,7]阳2阴8 or [1,1]均2宫
     "yuanstyle":"average",// average or classic
     "apptitle":"\u262F奇门遁甲",
+    "version":"170902"
 }
 var t={
     "":"",
@@ -143,6 +144,21 @@ var rules=[
 {tgan:"癸",dgan:"辛",title:"网盖天牢",note:"主官司败诉，死罪难逃；测病亦大凶"},
 {tgan:"癸",dgan:"壬",title:"复见腾蛇",note:"因癸、壬均为水蛇，故名为复见螣蛇，主嫁娶重婚，后嫁无子，不保年华"},
 {tgan:"癸",dgan:"癸",title:"天网四张",note:"主行人失伴，病讼皆伤<br />天网四张落一、二、三、四宫为网低，落六、七、八、九宫为网高。古云：天网四张，万物尽伤，百事不宜，只宜逃亡。"},
+//天网地罗
+{title:"地罗遮蔽",tgan:"壬",dgan:"时干",note:""},
+{title:"天网四张",tgan:"癸",dgan:"时干",gua:"坎/坤/震/巽",note:"一二三四五，尺寸低，可扬出"},
+{title:"天网四张",tgan:"癸",dgan:"时干",gua:"乾/兑/离/坎",note:"六七八九高，四张无走路，多遭刑厄"},
+//时加天干 p52
+{title:"时加六甲",sizhu:"时干甲",tgan:"时干",dgan:"时干",note:"一开一阖，上下交接（时下者，旬首加地盘，占时也，时下得甲申为伏吟之类，余仿此） 。 加阳星为开时，百事吉加阴星为阖时，百事不利"},
+{title:"时加六乙",tgan:"时干",dgan:"乙",note:"往来恍惚，与神俱出。时下得乙奇，凡攻击、行来、逃亡，宜从天上六乙出，为曰奇相随，恍惚如神，人无见者，故曰与神俱出。六乙为蓬星，又为天德，百事利，求利得，移徙、入官、市贾、嫁娶吉，若将兵，大胜，所向获功，不可遣怒，行鞭扑之事（凡六乙之时，看天盘上乙奇所临之宫为天德，此时客胜，宜和作营垒。六乙之下，以安军鼓者也）"},
+{title:"时加六丙",tgan:"时干",dgan:"丙",note:"万兵莫往，王侯之象。时下得丙为月奇也，凡攻伐，宜从天上六丙出，与月奇相遇，又丙为明堂，闻忧不忧，闻喜则喜，入官得迁，商贾有利，将兵大胜。又丙为天威，宜上号令、迁徙、入宅、归伙，万事大吉"},
+{title:"时加六丁",tgan:"时干",dgan:"丁",note:"出幽入冥，到老不刑。时下得丁为星奇，又为玉女，宜安葬、藏匿之事。若随星奇从天上六丁而出，入太阴而藏，敌人自不能见，利请谒、嫁娶、入官、市贾、百事皆吉无凶，若用兵主大胜。又六丁为三奇之灵，行来出入，宜从天上六丁所临之方出，百事吉利（丁，木火之情，化而成金，凡征战、谋为等事，利于暗计，私约交通）"},
+{title:"时加六戊",tgan:"时干",dgan:"戊",note:"乘龙万里，莫敢呵止。戊为天武，从天上六戊而出，挟天武入天门，百事皆吉，逃走亡命远行万里无所拘止，又宜发号施令，诸恶伐罪，谋大事（加本旬直符得反首跌穴得使之时，凡征伐，不战自退，任自求请，万事大吉犯刑冲凶格，大凶）"},
+{title:"时加六己",tgan:"时干",dgan:"己",note:"如神所使，出被凶咎。己为地户，又为＝，宜隐谋私密之事，不可表章暴露，强为之必获凶咎，入官、嫁娶、造作，大段用事皆凶，只宜市贾，将兵必弱（凡六己之时，看天盘上甲戌己所临之宫为明堂，此时用兵乃上将所居之地，宜隐伏，并偷营、劫寨，利为阴私秘密之事，小人利以亡命惊走）"},
+{title:"时加六庚",tgan:"时干",dgan:"庚",note:"抱木而行，强有出者，必有斗争。庚为天狱，又为天刑，出被凌辱，市贾无利，入官、嫁娶，百事皆凶，将兵客死主胜"},
+{title:"时加六辛",tgan:"时干",dgan:"辛",note:"行逢死人，强有所作，殃罚缠身，辛为天庭，不宜远行、诉讼、决刑狱、嫁娶、市贾、入官，不可间疾，诸事不利，将兵主胜客死"},
+{title:"时加六壬",tgan:"时干",dgan:"壬",note:"为吏所禁，强有出入，非祸相邻。壬为天牢，不可远行，入官、问疾、移徙、嫁娶、逃亡，百事皆凶，此时用事，必有仇怨，为吏所呵，不可举兵，只宜严刑狱、平诉讼"},
+{title:"时加六癸",tgan:"时干",dgan:"癸",note:"众人莫视，不知六癸，出门即死。癸为天藏，宜求仙、远遁、绝迹，从天上六癸所临之方而出，则众人莫见，不宜市贾、入官、迁除、嫁娶、移徙、入室，问疾病者重，又宜扬鞭扑之事，故云∶「九地之下，利以逃亡六癸之下，利以伏兵、逃亡、隐形也。」临一二三四五宫可以隐，临六七八九宫谓网遏，人不可以隐也。此时将兵主胜，百事皆凶"},
 //八门克应
 //吉格
 {title:"三奇贵人升殿",tgan:"丁",gua:"兑",note:"为日出扶桑，有禄之乡，是贵人升于乙卯正殿"},
@@ -176,12 +192,21 @@ var rules=[
 {title:"鬼假",men:"死",tgan:"丁/己/癸",shen:"地",note:"宜超度亡灵，扶重安民，破土修茔、伐邪、狩猎"},
 //凶格尚未校对
 //六仪击刑 天盘值符，加地盘与值符相刑的宫,star:"符"?
-{title:"子刑卯",tgan:"戊",gua:"震",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"},
-{title:"戌刑未",tgan:"己",gua:"坤",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"},
-{title:"申刑寅",tgan:"庚",gua:"艮",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"},
-{title:"午自刑",tgan:"辛",gua:"离",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"},
-{title:"辰自刑",tgan:"壬",gua:"巽",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"},
-{title:"寅刑巳",tgan:"癸",gua:"巽",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"},
+{title:"子刑卯",star:"符",tgan:"戊",gua:"震",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"},
+{title:"戌刑未",star:"符",tgan:"己",gua:"坤",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"},
+{title:"申刑寅",star:"符",tgan:"庚",gua:"艮",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"},
+{title:"午自刑",star:"符",tgan:"辛",gua:"离",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"},
+{title:"辰自刑",star:"符",tgan:"壬",gua:"巽",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"},
+{title:"寅刑巳",star:"符",tgan:"癸",gua:"巽",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"},
+//{title:"寅刑巳",star:"符",tgan:"癸",gua:"兑",note:"六仪击刑极凶，即使六仪为值符，也不可用。一动必有灾伤，若遇天网四张格，必被捕捉，有牢狱之灾"}, //p51
+//六仪受制
+{title:"六仪受制",men:"休",gua:"离",note:""},
+{title:"六仪受制",men:"伤",gua:"坤",note:""},
+{title:"六仪受制",men:"杜",gua:"艮/坤",note:""},
+{title:"六仪受制",men:"景",gua:"乾/兑",note:""},
+{title:"六仪受制",men:"生/死",gua:"坎",note:""},
+{title:"六仪受制",men:"开",gua:"震",note:""},
+{title:"六仪受制",men:"惊",gua:"巽",note:""},
 //三奇入墓"},
 {title:"三奇入墓",tgan:"乙",gua:"乾/坤",note:"乙木为阴木，长生于午，帝旺在寅，墓在戌（乾）；或乙属木，按木笼统讲，墓在未（坤）。百事不宜，谋事尽休。凡事吉的不吉，凶的不凶，无力之象"},
 {title:"三奇入墓",tgan:"丙",gua:"乾",note:"戌为丙火之墓。百事不宜，谋事尽休。凡事吉的不吉，凶的不凶，无力之象"},
@@ -290,12 +315,27 @@ var qimen={
     star:"",
     men:"",
     shen:"",
+    dbg:"",
     dx:null,
     ju:null,
     box:null,
     boxres:null,
     boxhead:null,
     skon:[0,0,0,0,0,0,0,0,0,0],
+}
+Date.prototype.format = function (format) {
+    var o = {
+        "M+": this.getMonth() + 1, //month
+        "d+": this.getDate(), //day
+        "h+": this.getHours(), //hour
+        "m+": this.getMinutes(), //minute
+        "s+": this.getSeconds(), //second
+        "q+": Math.floor((this.getMonth() + 3) / 3), //quarter
+        "S": this.getMilliseconds() //millisecond
+    }
+    if (/(y+)/.test(format)) format = format.replace(RegExp.$1,(this.getFullYear() + "").substr(4 - RegExp.$1.length));
+    for (var k in o) if (new RegExp("(" + k + ")").test(format))format = format.replace(RegExp.$1,RegExp.$1.length == 1 ? o[k] :("00" + o[k]).substr(("" + o[k]).length));
+    return format;
 }
 function jieqivalue(yr,no){
     //从0开始，第一个节气是小寒
@@ -470,10 +510,10 @@ function boxIs(boxid,ruleid){
         if (key=="tgan" || key=="dgan"){
             k="liusan"
             for (var i=0;i<zs.length;i++){
-                //替换年月日时->对应的六三
+                //替换年月日时->对应的六仪
                 for (var j=0;j<ks.length;j++){
                     vn=qimen.sizhu.substr(i*2+j,1);
-                    if (vn=="甲") vn=t.xunshou[xun(qimen.sizhu.substr(i*2+j,2))]; //干为甲变成六三
+                    if (vn=="甲") vn=t.xunshou[xun(qimen.sizhu.substr(i*2+j,2))]; //干为甲变成六仪
                     rules[ruleid][key]=rules[ruleid][key].replace(new RegExp(zs[i]+ks[j], 'g'),vn);                                
                 }
                 
@@ -514,7 +554,11 @@ function boxIs(boxid,ruleid){
                 //insub= (t[k].indexOf(v11)==v2);
                 //console.log("k",k);
                 //insub= (v11==qimen[key][v2]);
-                insub= (t[k].indexOf(v11)==v2);
+                jidgan=(boxid==tconfig.zhonggong[qimen.ju<0?0:1] && key=="dgan" && t[k].indexOf(v11)==qimen.dgan[4]);
+                jitgan=(boxid==qimen.tgan.substr(-1,1) && key=="tgan" && t[k].indexOf(v11)==qimen.tgan.substr(-2,1));
+                jistar=(boxid==qimen.star.indexOf(tconfig.zhonggong[qimen.ju<0?0:1]) && key=="star" && t[k].indexOf(v11)==4);
+                //以上三项分别是中宫符合的条件
+                insub= (t[k].indexOf(v11)==v2 || jidgan || jitgan || jistar );
                 if (rules[ruleid]["men"]=="生/死"){
                 }
             }
@@ -549,8 +593,11 @@ function shige(){
 function tellbox(boxid){
     var ox,rid,swstate,ox2,skon,skgo;
     if (boxid!=4){
-        swstate=t.liusan[qimen.tgan[boxid]]+" "+swsRel(t.liusan[qimen.tgan[boxid]],t.zhibyG[boxid])+"<br />";
-        swstate=swstate+t.liusan[qimen.dgan[boxid]]+" "+swsRel(t.liusan[qimen.dgan[boxid]],t.zhibyG[boxid])+"<br />";
+        swstate=t.liusan[qimen.tgan[boxid]]+" "+swsRel(t.liusan[qimen.tgan[boxid]],t.zhibyG[boxid]);
+        if (boxid==qimen.tgan.substr(-1,1)) swstate= swstate+"&nbsp;&nbsp;"+"<span style='color:#708090'>" + t.liusan[qimen.tgan.substr(-2,1)]+" "+swsRel(t.liusan[qimen.tgan.substr(-2,1)],t.zhibyG[boxid])+"</span>" ;//天
+        swstate=swstate+"<br />"+t.liusan[qimen.dgan[boxid]]+" "+swsRel(t.liusan[qimen.dgan[boxid]],t.zhibyG[boxid])+"";
+        if (boxid==tconfig.zhonggong[qimen.ju<0?0:1]) swstate=swstate + "&nbsp;&nbsp;" + "<span style='color:#708090'>" + t.liusan[qimen.dgan[4]]+" "+swsRel(t.liusan[qimen.dgan[4]],t.zhibyG[boxid])+"</span>";//地
+        swstate=swstate+"<br />";
         ox="<h2>"+t.baguabyG[boxid]+t.no[boxid+1]+"宫</h2>"+swstate;
         /*skon=t.xunkong[xun(qimen.sizhu.substr(6,2))];
         if (t.zhibyG.indexOf(skon[1])==boxid){ox=ox+"<li><b>时空</b></li>";} 
@@ -568,7 +615,8 @@ function tellbox(boxid){
         }
     }
     else {
-        ox="";
+        //ox=qimen.dbg;        
+        ox='';
     }
     return ox;
 }
@@ -631,12 +679,13 @@ function initQimen(dx){
     tg1=t.ordplate.indexOf(xpos)-t.ordplate.indexOf(tg3);
     tg1=(tg1+8)%8;
     for (var i=0;i<9;i++){
-        temp4=dgan.indexOf(i);        //若地盘干位于中宫，将移动后的天盘干数据存储到tgax[9]，小数点分隔为六三、宫位
+        temp4=dgan.indexOf(i);        //若地盘干位于中宫，将移动后的天盘干数据存储到tgax[9][10]分别为为六三、宫位
         //天盘干
         if (temp4==4) {
             temp4=tconfig.zhonggong[(Math.abs(ju)+ju)/ju/2];
             temp3=t.ordplate[(temp2+t.ordplate.indexOf(temp4)+8)%8];
-            tgax[9]=i+temp3/10;
+            tgax[9]=i
+            tgax[10]=temp3;
         }
         else{
             temp3=t.ordplate[(temp2+t.ordplate.indexOf(temp4)+8)%8];
@@ -657,6 +706,7 @@ function initQimen(dx){
         
       }
     tgan=tgax.join("");
+    console.log(tgax);
     star=starx.join("");
     men=menx.join("");
     shen=shenx.join("");
@@ -685,7 +735,7 @@ function initQimen(dx){
     //打印布局
     //osx="<h1><a style='text-decoration:none;' href='#now'>"+tconfig.apptitle+"</a></h1>";
     osx="<h1>"+tconfig.apptitle+"</h1>";
-    osx=osx+"<br />" + "时间&nbsp;&nbsp;"+qimen.dx.toLocaleString();
+    osx=osx+"<br />" + "时间&nbsp;&nbsp;"+'<a href="#' + qimen.dx.format("yyyyMMddhhmmss") + '">'+qimen.dx.toLocaleString()+'</a>';
     osx=osx+"<br />" + "节气&nbsp;&nbsp;"+"阴阳"[(Math.abs(qimen.ju)+qimen.ju)/qimen.ju/2]+"遁&nbsp;&nbsp;" + t.no[Math.abs(qimen.ju)]+"局&nbsp;&nbsp;"+jieqi(qimen.dx).name+"&nbsp;&nbsp;"+"上中下"[sanyuan(qimen.dx,tconfig.yuanstyle)]+"元("+jieqi(qimen.dx).past+"天) ";
     osx=osx+"<br />" +"四柱&nbsp;&nbsp;"+qimen.sizhu.substr(0,2)+"&nbsp;&nbsp;"+qimen.sizhu.substr(2,2)+"&nbsp;&nbsp;"+qimen.sizhu.substr(4,2)+"&nbsp;&nbsp;"+qimen.sizhu.substr(6,2)+"&nbsp;&nbsp;";
     osx=osx+"<br />" +"旬空&nbsp;&nbsp;"+t.xunkong[xun(qimen.sizhu.substr(0,2))]+"&nbsp;&nbsp;"+t.xunkong[xun(qimen.sizhu.substr(2,2))]+"&nbsp;&nbsp;"+t.xunkong[xun(qimen.sizhu.substr(4,2))]+"&nbsp;&nbsp;"+t.xunkong[xun(qimen.sizhu.substr(6,2))]+"&nbsp;&nbsp;";
@@ -713,10 +763,15 @@ function initQimen(dx){
             k=t.ordreal[k];
             if (k==4){
                 
-                temp4=tconfig.zhonggong[(Math.abs(ju)+ju)/ju/2];
-                tg7=tconfig.zhonggong[(Math.abs(ju)+ju)/ju/2];
+                temp4=tconfig.zhonggong[ju<0?0:1];
+                tg7=tconfig.zhonggong[ju<0?0:1];
                 tg8=spc+"寄"+spc;
-                boxes[tg6]=spc+t.liusan[tgan.substr(-3,1)] + tg8 + t.baguabyG[tgan.substr(-1,1)] + "<br />"+spc + t.xingbyG[k] + tg8 + t.baguabyG[star.indexOf(tg7)]+"<br />"+spc+t.liusan[dgan[k]]+ tg8 +t.baguabyG[temp4]+"<br /><br />" ;
+                boxes[tg6]=spc+t.liusan[tgan.substr(-2,1)] + tg8 + t.baguabyG[tgan.substr(-1,1)] + "<br />"+spc + t.xingbyG[k] + tg8 + t.baguabyG[star.indexOf(tg7)]+"<br />"+spc+t.liusan[dgan[k]]+ tg8 +t.baguabyG[temp4]+"<br /><br />" ;
+                /*
+                1 天盘干的漂移，六三和第三行其实一致，但也可用前面记录在tgax或tgan的数据，宫位tgan.substr(-1,1)
+                2 禽可寄芮或任，或都为芮所在宫位
+                3 地盘干寄阳8阴2或都2宫，宫位tconfig.zhonggong[ju<0?0:1]
+                */
             }
             else{                
             //osx=osx + k + ".";
@@ -738,9 +793,9 @@ function initQimen(dx){
     }
     qimen.box=boxes;
 
-    /*
+    
     dbg=dbg+"地盘干 -> "+dgan;
-    dbg=dbg+"</li><li>"+ "旬首["+xunshou+"](+1) -> [甲"+t.xunshou[xunshou]+t.liusan[xunshou]+"] -> ["+t.liusan[xunshou]+"]在["+dgan.indexOf(xunshou)+"](+1)宫 -> ["+t.baguabyG[dgan.indexOf(xunshou)]+"]宫 -> xid:["+xid+"] -> 对应["+t.xingbyG[xid]+"]星(值符);["+t.menbyG[xid]+"]门(值使)";
+    dbg=dbg+"</li><li>"+ "时柱计算旬首["+xunshou+"](+1) -> [甲"+t.xunshou[xunshou]+t.liusan[xunshou]+"] -> ["+t.liusan[xunshou]+"]在["+dgan.indexOf(xunshou)+"](+1)宫 -> ["+t.baguabyG[dgan.indexOf(xunshou)]+"]宫 -> xid:["+xid+"] -> 对应["+t.xingbyG[xid]+"]星(值符);["+t.menbyG[xid]+"]门(值使)";
     dbg=dbg+"</li><li>"+ "时干为["+ab.substr(0,1)+"] -> 在地盘中寻找 -> 位于["+t.baguabyG[xpos]+"]宫 -> ["+t.baguabyG[xpos]+"]宫即为["+t.xingbyG[xid]+"]星的位置";
     temp2=(t.zhi.indexOf(ab.substr(1,1))-t.zhi.indexOf(t.xunshou[xunshou])+12)%12;
     dbg=dbg+"</li><li>"+ "旬首地支为甲["+t.xunshou[xunshou]+ "]的["+t.xunshou[xunshou]+ "] -> 往后推["+temp2+"]个元素 -> " + "为["+ab.substr(1,1)+"]的时支 -> ["+"阴阳"[(Math.abs(ju)+ju)/ju/2]+"]遁就["+"逆顺"[(Math.abs(ju)+ju)/ju/2]+"]着值符位置["+t.baguabyG[xpos]+"]宫推["+temp2+"]个元素 -> ["+t.baguabyG[mpos]+"]宫即为["+t.menbyG[xid]+"]门(值使)位置";
@@ -757,7 +812,6 @@ function initQimen(dx){
     }
     dbg=dbg+"</li><li>"+ t.xingbyG[xid]+ "(" + t.baguabyG[xpos] + ") " + t.menbyB[mid] + "(" + t.baguabyG[mpos] + ")" + t.ordplate
     dbg=dbg+"</li>"
-    */
-    osx=osx + dbg;
+    qimen.dbg=dbg;
     return osx;
 }
