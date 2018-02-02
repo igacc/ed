@@ -30,15 +30,18 @@ td {position:relative;text-align:center}
 <script>
 //初始化
 var hash;
-initQimen(gettime());
-//更新标题
-document.title=tconfig.apptitle + " "+hash.substr(2,2) + "-" + hash.substr(4,2) + "-" + hash.substr(6,2) + " " + hash.substr(8,2) + ":" + hash.substr(10,2);
-//更新抬头
-document.getElementById("head").innerHTML=qimen.boxhead;
-//更新九宫 
-for (var i=0;i<9;i++){
-    document.getElementsByTagName('td')[i].innerHTML=qimen.box[i];
-    document.getElementsByTagName('td')[i].setAttribute("onclick","getbox('"+i+"');");
+startup();
+function startup(){
+    initQimen(gettime());
+    //更新标题
+    document.title=tconfig.apptitle + " "+hash.substr(2,2) + "-" + hash.substr(4,2) + "-" + hash.substr(6,2) + " " + hash.substr(8,2) + ":" + hash.substr(10,2);
+    //更新抬头
+    document.getElementById("head").innerHTML=qimen.boxhead;
+    //更新九宫 
+    for (var i=0;i<9;i++){
+        document.getElementsByTagName('td')[i].innerHTML=qimen.box[i];
+        document.getElementsByTagName('td')[i].setAttribute("onclick","getbox('"+i+"');");
+    }
 }
 function getbox(bid){
     document.getElementById("detail").innerHTML=tellbox(t.ordreal[bid]);   
@@ -64,7 +67,7 @@ function gettime(){
     return dx;
 }
 window.onhashchange=function(){
-    //loaddx();
+    startup();
 }
 </script>
 </div>
