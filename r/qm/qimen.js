@@ -30,6 +30,8 @@ var t={
         "蓬 芮 冲 辅 禽 心 柱 任 英".split(" "),
     "menbyG":
         "休 死 伤 杜 死 开 惊 生 景".split(" "),
+    "fivebyG":
+        "水 土 木 木 土 金 金 土 火".split(" "),
     "zhibyG":
         "子 未申 卯 辰巳 _ 戌亥 酉 丑寅 午".split(" "),
     "menbyB":
@@ -500,6 +502,16 @@ function swsRel(sg,sz){
     return ox.substr(0,ox.length-1);
 }
 
+function fiveRel(a,b,style){
+    fdict={"0":"same","1":"bs","-1":"s","2":"bk","-2":"k","3":"k","-3":"bk","4":"s"};
+    fchar={"same":"⇌","s":"⇒","bs":"⇐","k":"⇏","bk":"⇍"};
+    //识别星、宫、门
+    ka=t.xingbyG.indexOf(a)>-1?t.xingbyG.indexOf(a):(t.baguabyG.indexOf(a)>-1?t.baguabyG.indexOf(a):t.menbyG.indexOf(a));
+    kb=t.xingbyG.indexOf(b)>-1?t.xingbyG.indexOf(b):(t.baguabyG.indexOf(b)>-1?t.baguabyG.indexOf(b):t.menbyG.indexOf(b));
+    delta=t.five.indexOf(t.fivebyG[ka])-t.five.indexOf(t.fivebyG[kb]);
+    return style==undefined?fdict[delta]:fchar[fdict[delta]];
+}
+
 
 //判断是否匹配某个格局
 function boxIs(boxid,ruleid){
@@ -598,7 +610,13 @@ function tellbox(boxid){
         swstate=swstate+"<br />"+t.liusan[qimen.dgan[boxid]]+" "+swsRel(t.liusan[qimen.dgan[boxid]],t.zhibyG[boxid])+"";
         if (boxid==tconfig.zhonggong[qimen.ju<0?0:1]) swstate=swstate + "&nbsp;&nbsp;" + "<span class='diff'>" + t.liusan[qimen.dgan[4]]+" "+swsRel(t.liusan[qimen.dgan[4]],t.zhibyG[boxid])+"</span>";//地
         swstate=swstate+"<br />";
-        ox="<h2>"+t.baguabyG[boxid]+t.no[boxid+1]+"宫</h2>"+swstate;
+        //ox="<h2>"+t.baguabyG[boxid]+t.no[boxid+1]+"</h2>"+swstate;
+        ox=swstate;
+        ra=fiveRel(t.menbyB[qimen.men[boxid]],t.baguabyG[boxid],"char");
+        rb=fiveRel(t.baguabyG[boxid],t.xingbyG[qimen.star[boxid]],"char");
+        rc=fiveRel(t.xingbyG[qimen.star[boxid]],t.menbyB[qimen.men[boxid]],"char");
+        ox=ox+t.menbyB[qimen.men[boxid]]+'<span style="display:inline-block;transform:rotate(0deg);">'+ra+'</span>'+t.baguabyG[boxid]+'<br /><span style="display:inline-block;transform:rotate(240deg);">'+rc+'</span>'+t.xingbyG[qimen.star[boxid]]+'<span style="display:inline-block;transform:rotate(120deg);">'+rb+'</span>';
+
         /*skon=t.xunkong[xun(qimen.sizhu.substr(6,2))];
         if (t.zhibyG.indexOf(skon[1])==boxid){ox=ox+"<li><b>时空</b></li>";} 
         else if (t.zhibyG.indexOf(skon[0])==boxid){ox="<li>时空</li>"+ox;} */
