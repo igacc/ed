@@ -594,9 +594,9 @@ function tellbox(boxid){
     var ox,rid,swstate,ox2,skon,skgo;
     if (boxid!=4){
         swstate=t.liusan[qimen.tgan[boxid]]+" "+swsRel(t.liusan[qimen.tgan[boxid]],t.zhibyG[boxid]);
-        if (boxid==qimen.tgan.substr(-1,1)) swstate= swstate+"&nbsp;&nbsp;"+"<span style='color:#708090'>" + t.liusan[qimen.tgan.substr(-2,1)]+" "+swsRel(t.liusan[qimen.tgan.substr(-2,1)],t.zhibyG[boxid])+"</span>" ;//天
+        if (boxid==qimen.tgan.substr(-1,1)) swstate= swstate+"&nbsp;&nbsp;"+"<span class='diff'>" + t.liusan[qimen.tgan.substr(-2,1)]+" "+swsRel(t.liusan[qimen.tgan.substr(-2,1)],t.zhibyG[boxid])+"</span>" ;//天
         swstate=swstate+"<br />"+t.liusan[qimen.dgan[boxid]]+" "+swsRel(t.liusan[qimen.dgan[boxid]],t.zhibyG[boxid])+"";
-        if (boxid==tconfig.zhonggong[qimen.ju<0?0:1]) swstate=swstate + "&nbsp;&nbsp;" + "<span style='color:#708090'>" + t.liusan[qimen.dgan[4]]+" "+swsRel(t.liusan[qimen.dgan[4]],t.zhibyG[boxid])+"</span>";//地
+        if (boxid==tconfig.zhonggong[qimen.ju<0?0:1]) swstate=swstate + "&nbsp;&nbsp;" + "<span class='diff'>" + t.liusan[qimen.dgan[4]]+" "+swsRel(t.liusan[qimen.dgan[4]],t.zhibyG[boxid])+"</span>";//地
         swstate=swstate+"<br />";
         ox="<h2>"+t.baguabyG[boxid]+t.no[boxid+1]+"宫</h2>"+swstate;
         /*skon=t.xunkong[xun(qimen.sizhu.substr(6,2))];
@@ -766,7 +766,8 @@ function initQimen(dx){
                 temp4=tconfig.zhonggong[ju<0?0:1];
                 tg7=tconfig.zhonggong[ju<0?0:1];
                 tg8=spc+"寄"+spc;
-                boxes[tg6]=spc+t.liusan[tgan.substr(-2,1)] + tg8 + t.baguabyG[tgan.substr(-1,1)] + "<br />"+spc + t.xingbyG[k] + tg8 + t.baguabyG[star.indexOf(tg7)]+"<br />"+spc+t.liusan[dgan[k]]+ tg8 +t.baguabyG[temp4]+"<br /><br />" ;
+                boxes[4]="";
+                //boxes[tg6]=spc+t.liusan[tgan.substr(-2,1)] + tg8 + t.baguabyG[tgan.substr(-1,1)] + "<br />"+spc + t.xingbyG[k] + tg8 + t.baguabyG[star.indexOf(tg7)]+"<br />"+spc+t.liusan[dgan[k]]+ tg8 +t.baguabyG[temp4]+"<br /><br />" ;
                 /*
                 1 天盘干的漂移，六三和第三行其实一致，但也可用前面记录在tgax或tgan的数据，宫位tgan.substr(-1,1)
                 2 禽可寄芮或任，或都为芮所在宫位
@@ -780,14 +781,16 @@ function initQimen(dx){
             神   星   天盘干
             宫   门   地盘干
             */
+            
             var xingstr=t.xingbyG[star[k]];
             var menstr=t.menbyB[men[k]];
             var shenstr=t.shenbyB[shen[k]];
-            var skonstr=(qimen.skon[k]==0)?spc:"&#9851";
-            if (tg3==star[k]) xingstr="<span style='font-weight:bold;color:gold'>" + xingstr + "</span>";
-            if (mpos==k) menstr="<span style='font-weight:bold;color:gold'>" + menstr + "</span>";
-            if (xpos==k) shenstr="<span style='font-weight:bold;color:gold'>" + shenstr + "</span>";
-            boxes[tg6]=spc+shenstr + spc + xingstr + spc + t.liusan[tgan[k]] + "<br /><br />" +skonstr+ t.baguabyG[k] +spc + menstr  + spc + t.liusan[dgan[k]] + "<br /><br />";
+            var skonstr=(qimen.skon[k]==0)?spc:"空";//"&#9851"
+            if (tg3==star[k]) xingstr="<span class='high'>" + xingstr + "</span>";
+            if (mpos==k) menstr="<span class='high'>" + menstr + "</span>";
+            if (xpos==k) shenstr="<span class='high'>" + shenstr + "</span>";
+            boxes[tg6]=spc+shenstr + spc + xingstr + spc + t.liusan[tgan[k]] + spc + "<br /><br />" +spc+ skonstr +spc + menstr  + spc + t.liusan[dgan[k]] + spc;
+            boxes[tg6]='<div style="width:100%;opacity:0.2;position:absolute;font-size:360%;top:50%;transform:translate(0,-50%);">'+ t.baguabyG[k] +'</div><div style="left:0">'+boxes[tg6]+'</div>';
             }
         }
     }
