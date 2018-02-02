@@ -2,7 +2,7 @@ var tconfig={
     "zhonggong":[1,7],//[1,7]阳2阴8 or [1,1]均2宫
     "yuanstyle":"average",// average or classic
     "apptitle":"\u262F奇门遁甲",
-    "version":"170902"
+    "version":"180202"
 }
 var t={
     "":"",
