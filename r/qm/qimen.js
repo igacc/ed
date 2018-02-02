@@ -790,7 +790,8 @@ function initQimen(dx){
             if (mpos==k) menstr="<span class='high'>" + menstr + "</span>";
             if (xpos==k) shenstr="<span class='high'>" + shenstr + "</span>";
             boxes[tg6]="<br />"+spc+shenstr + spc + xingstr + spc + t.liusan[tgan[k]] + spc + "<br /><br />" +spc+ skonstr +spc + menstr  + spc + t.liusan[dgan[k]] + spc+"<br />";
-            boxes[tg6]='<div style="width:100%;opacity:0.2;position:absolute;font-size:360%;top:50%;transform:translate(0,-50%);">'+ t.baguabyG[k] +'</div><div style="left:0">'+boxes[tg6]+'</div>';
+            neipan=((k==0 || k==7 || k==2 || k==3) ^ qimen.ju>0)?"color:rgb(150,150,233);":"color:rgb(233,150,150);";//内盘为红，外盘为蓝
+            boxes[tg6]='<div style="width:100%;opacity:0.25;position:absolute;font-size:360%;top:50%;transform:translate(0,-50%);'+neipan+'">'+ t.baguabyG[k] +'</div><div style="left:0">'+boxes[tg6]+'</div>';
             }
         }
     }
