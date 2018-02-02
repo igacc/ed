@@ -789,7 +789,7 @@ function initQimen(dx){
             if (tg3==star[k]) xingstr="<span class='high'>" + xingstr + "</span>";
             if (mpos==k) menstr="<span class='high'>" + menstr + "</span>";
             if (xpos==k) shenstr="<span class='high'>" + shenstr + "</span>";
-            boxes[tg6]=spc+shenstr + spc + xingstr + spc + t.liusan[tgan[k]] + spc + "<br /><br />" +spc+ skonstr +spc + menstr  + spc + t.liusan[dgan[k]] + spc;
+            boxes[tg6]="<br />"+spc+shenstr + spc + xingstr + spc + t.liusan[tgan[k]] + spc + "<br /><br />" +spc+ skonstr +spc + menstr  + spc + t.liusan[dgan[k]] + spc+"<br />";
             boxes[tg6]='<div style="width:100%;opacity:0.2;position:absolute;font-size:360%;top:50%;transform:translate(0,-50%);">'+ t.baguabyG[k] +'</div><div style="left:0">'+boxes[tg6]+'</div>';
             }
         }
