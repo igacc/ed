@@ -1,0 +1,8 @@
+{
+  "name": "奇门遁甲",
+  "short_name": "QM",
+  "description": "Qimen Dunjia",
+  "lang": "zh-CN",
+  "start_url": "/",
+  "display": "standalone"
+}

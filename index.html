@@ -1,0 +1,98 @@
+<html>
+<head>
+<meta charset='utf-8' />
+<meta http-equiv="Content-Security-Policy" content="default-src 'unsafe-inline' 'unsafe-eval' 'self' *.iga.cc *.34b.cc dajie.bid localhost">
+
+<link rel="manifest" href="manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="application-name" content="QM">
+<meta name="apple-mobile-web-app-title" content="QM">
+<meta name="msapplication-starturl" content="/">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/sw.js').then(function(registration) {
+      // Registration was successful
+      console.log('ServiceWorker registration successful with scope: ', registration.scope);
+    }, function(err) {
+      // registration failed :(
+      console.log('ServiceWorker registration failed: ', err);
+    });
+  });
+}
+</script>
+<script src="qimen.js"></script>
+<title>QIMEN</title>
+<style type="text/css">
+body{background-color:rgb(12,16,33);color:rgb(246,246,248);line-height:150%;}
+.high {color:gold;font-weight:bold;}
+.diff {color:#708090;}
+a:link {color: rgb(246,246,248)} 
+h1 {text-align:center}
+h2 {font-weight:normal}
+h3 {font-weight:normal}
+table {width:100%;empty-cells:show;border-collapse:collapse;position:relative;}
+td {position:relative;text-align:center}
+</style>
+</head>
+<body>
+<div>
+<p id="head"></p>
+<table border=0 cellpadding=0 cellspacing=0>
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+<tr><td></td><td></td><td></td></tr>
+</table>
+<p id="detail"></p>
+</div>
+<script>
+//初始化
+var hash;
+startup();
+function startup(){
+    initQimen(gettime());
+    //更新标题
+    document.title=tconfig.apptitle + " "+hash.substr(2,2) + "-" + hash.substr(4,2) + "-" + hash.substr(6,2) + " " + hash.substr(8,2) + ":" + hash.substr(10,2);
+    //更新抬头
+    document.getElementById("head").innerHTML=qimen.boxhead;
+    //更新九宫 
+    for (var i=0;i<9;i++){
+        document.getElementsByTagName('td')[i].innerHTML=qimen.box[i];
+        document.getElementsByTagName('td')[i].setAttribute("onclick","getbox('"+i+"');");
+    }
+}
+function getbox(bid){
+    document.getElementById("detail").innerHTML=tellbox(t.ordreal[bid]);   
+    scrollTo(document.getElementById("detail").offsetLeft,document.getElementById("detail").offsetTop);
+}
+function gettime(){
+    var dx=new Date();
+    hash=window.location.hash.substr(1);
+    if (hash=="" || hash=="now") {
+        dar=[String(dx.getFullYear()),String(dx.getMonth()+1),String(dx.getDate()),String(dx.getHours()),String(dx.getMinutes()),String(dx.getSeconds())];
+        for (var i=1;i<dar.length;i++){
+            if (dar[i].length<2)  dar[i]="0" + dar[i]
+        }
+        hash=dar.join("");
+        window.location.hash="#" + "now";
+    }
+    dx.setFullYear(hash.substr(0,4));
+    dx.setMonth(hash.substr(4,2)-1);
+    dx.setDate(hash.substr(6,2));
+    dx.setHours(hash.substr(8,2));
+    dx.setMinutes(hash.substr(10,2));
+    dx.setSeconds(hash.substr(12,2));
+    return dx;
+}
+window.onhashchange=function(){
+    startup();
+}
+</script>
+</div>
+<div>
+</div>
+<p style="text-align:center">&copy;2017 jiamin</p>
+</body>
+</html>
